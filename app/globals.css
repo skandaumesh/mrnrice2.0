@@ -420,8 +420,12 @@ figure.photo{ margin:0; }
    RESPONSIVE
    ========================================================= */
 @media (max-width:1000px){
-  .hero-grid{ grid-template-columns:1fr; gap:34px; }
+  .hero-grid{ grid-template-columns:1fr; gap:30px; }
   .hero-copy{ max-width:none; }
+  /* stacked hero: stage scales with viewport instead of a fixed height */
+  .stage-canvas{ height:clamp(340px,66vw,460px); }
+  .stage-canvas::before{ width:min(360px,70%); }
+  .stage-pack{ max-width:56%; max-height:82%; }
   .g4{ grid-template-columns:repeat(2,1fr); }
   .promise{ grid-template-columns:1fr; }
   .journey{ grid-template-columns:repeat(3,1fr); row-gap:clamp(30px,4vw,44px); }
@@ -451,11 +455,24 @@ figure.photo{ margin:0; }
 @media (max-width:600px){
   body{ font-size:15.5px; }
   .g2,.g3,.g4{ grid-template-columns:1fr; }
-  .journey{ grid-template-columns:repeat(2,1fr); }
+  .journey{ grid-template-columns:repeat(2,1fr); column-gap:18px; }
   .frow,.specs{ grid-template-columns:1fr; }
   .footer-grid{ grid-template-columns:1fr; }
   .hero-meta{ gap:18px 26px; }
   .btn-row .btn{ flex:1 1 auto; justify-content:center; }
+  /* hero product a touch larger now it has the full width */
+  .stage-canvas{ height:clamp(320px,84vw,420px); }
+  .stage-pack{ max-width:60%; max-height:84%; }
+  .stage-tabs{ gap:0 16px; justify-content:center; }
+  .stage-tab{ font-size:.82rem; }
+}
+
+@media (max-width:430px){
+  .journey{ grid-template-columns:1fr; }
+  .jnode{ width:50px; height:50px; }
+  .brand-type span{ display:none; }        /* free up header width on tiny phones */
+  .section-head .eyebrow,.eyebrow{ letter-spacing:.14em; }
+  .cta-panel{ border-radius:20px; }
 }
 
 @media (prefers-reduced-motion:reduce){
