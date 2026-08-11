@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MRN Agro Industries — Rice Milling &amp; Processing, Raichur</title>
+<meta name="description" content="MRN Agro Industries, established 2016 in Raichur, Karnataka. Raw rice, boiled rice, rice bran and rice husk from a modern 8 tons/hour milling facility with direct farm sourcing." />
+<link rel="icon" href="public/logo.jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><img src="public/logo.jpeg" alt="MRN Agro Industries logo" /></span>
+      <span class="brand-type"><strong>MRN Agro Industries</strong><em>Raichur, Karnataka</em></span>
+    </a>
+    <nav class="nav" id="primaryNav" aria-label="Primary">
+      <a href="index.html" class="is-current">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html" class="nav-cta">Contact Us</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO SLIDER ============ -->
+<section class="hero-slider" id="heroSlider" aria-roledescription="carousel" aria-label="MRN Agro Industries highlights">
+
+  <div class="hs-track">
+
+    <!-- Slide 1 · Company introduction -->
+    <article class="hs-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 3">
+      <div class="hero-scene" aria-hidden="true">
+        <svg class="hero-sky" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0C2A1B" /><stop offset="60%" stop-color="#245234" /><stop offset="100%" stop-color="#8E9145" />
+            </linearGradient>
+          </defs>
+          <rect width="1440" height="600" fill="url(#sky)" />
+          <circle cx="1120" cy="400" r="90" fill="#E8D69C" opacity="0.35" />
+          <path d="M0 430 C 220 400 380 440 580 420 C 800 398 960 436 1160 414 C 1300 400 1380 424 1440 412 L1440 600 L0 600 Z" fill="#0C2519" opacity="0.7" />
+        </svg>
+        <svg class="paddy" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice" data-stalks="30" data-color="#06170D" data-opacity="0.9"></svg>
+        <div class="hero-scrim"></div>
+      </div>
+
+      <div class="hs-content">
+        <span class="eyebrow">Established 2016 &middot; Raichur, Karnataka</span>
+        <h1>From Karnataka's Fields to Quality Tables</h1>
+        <p>
+          Premium rice products, responsibly sourced and expertly processed. At MRN Agro Industries,
+          we are committed to delivering quality, consistency, and trust in every grain.
+        </p>
+        <div class="btn-row">
+          <a href="products.html" class="btn btn-gold">Explore Our Products</a>
+          <a href="contact.html" class="btn btn-ghost-light">Contact Us</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Slide 2 · Product range -->
+    <article class="hs-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+      <div class="hs-bg hs-bg--plain" aria-hidden="true"></div>
+      <img class="hs-pack" src="public/products/MRN NEW GREEN.png" alt="" aria-hidden="true" />
+
+      <div class="hs-content">
+        <span class="eyebrow">Our Product Range</span>
+        <h2>Raw Rice, Boiled Rice, Bran and Husk</h2>
+        <p>
+          A carefully curated range processed with uncompromising attention to quality, serving
+          households, wholesalers, distributors and industrial buyers across the region.
+        </p>
+        <div class="btn-row">
+          <a href="products.html" class="btn btn-gold">View Products</a>
+          <a href="contact.html" class="btn btn-ghost-light">Request a Quote</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Slide 3 · Quality promise -->
+    <article class="hs-slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+      <div class="hs-bg hs-bg--deep" aria-hidden="true"></div>
+      <svg class="hs-grain-row paddy" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice" data-stalks="24" data-color="#04120A" data-opacity="0.8" aria-hidden="true"></svg>
+
+      <div class="hs-content">
+        <span class="eyebrow">Quality Promise</span>
+        <h2>Quality You Can Trust in Every Grain</h2>
+        <p>
+          Direct sourcing from farmers, a modern facility milling 8 tons per hour, and quality
+          checks at every stage &mdash; so what reaches you is consistent, order after order.
+        </p>
+        <div class="btn-row">
+          <a href="about.html" class="btn btn-gold">About Our Process</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <button class="hs-arrow hs-prev" id="hsPrev" aria-label="Previous slide">
+    <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" /></svg>
+  </button>
+  <button class="hs-arrow hs-next" id="hsNext" aria-label="Next slide">
+    <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
+  </button>
+
+  <div class="hs-dots" id="hsDots" role="tablist" aria-label="Choose slide">
+    <button role="tab" aria-selected="true"  aria-label="Slide 1"></button>
+    <button role="tab" aria-selected="false" aria-label="Slide 2"></button>
+    <button role="tab" aria-selected="false" aria-label="Slide 3"></button>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+  <div class="shell">
+    <div class="stat-row">
+      <div class="stat">
+        <span class="stat-num" data-count="2016" data-plain="1">2016</span>
+        <span class="stat-label">Established</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num"><span data-count="8">8</span> <i>tons / hour</i></span>
+        <span class="stat-label">Milling Capacity</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num"><span data-count="4">4</span> <i>products</i></span>
+        <span class="stat-label">Product Range</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num"><span data-count="100">100</span><i>%</i></span>
+        <span class="stat-label">Direct Farm Sourcing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT PREVIEW ============ -->
+<section class="section">
+  <div class="shell split wide-right">
+    <div class="figure reveal">
+      <svg class="art-field" viewBox="0 0 640 820" role="img" aria-label="Illustration of a paddy field">
+        <defs>
+          <linearGradient id="fieldSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#E9DCB8" /><stop offset="55%" stop-color="#CFC28E" /><stop offset="100%" stop-color="#8A9350" />
+          </linearGradient>
+          <linearGradient id="fieldGround" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#63713A" /><stop offset="100%" stop-color="#2A3F23" />
+          </linearGradient>
+        </defs>
+        <rect width="640" height="820" fill="url(#fieldSky)" />
+        <circle cx="450" cy="250" r="140" fill="#F2E6C0" opacity="0.5" />
+        <circle cx="450" cy="250" r="48" fill="#F6EFD2" />
+        <path d="M0 430 C 120 408 220 436 340 420 C 460 404 540 430 640 414 L640 520 L0 520 Z" fill="#44562C" opacity="0.75" />
+        <rect y="470" width="640" height="350" fill="url(#fieldGround)" />
+        <g data-artstalks="1"></g>
+      </svg>
+    </div>
+
+    <div class="reveal" data-delay="80">
+      <span class="eyebrow">About Us</span>
+      <h2>Rooted in Quality Since 2016</h2>
+      <p class="lede" style="margin-top:16px">
+        Established in 2016, MRN Agro Industries has grown into a trusted name in rice milling and
+        processing in Karnataka. Operating from our state-of-the-art facility in Raichur, we combine
+        traditional agricultural values with modern processing standards to deliver products that
+        meet the highest expectations of quality and consistency.
+      </p>
+      <p class="muted">
+        From sourcing premium paddy directly from local farmers to ensuring hygienic processing and
+        timely delivery, every step of our journey reflects our commitment to excellence.
+      </p>
+      <ul class="checklist">
+        <li>Direct sourcing from farmers across Raichur district</li>
+        <li>Modern milling and processing facility</li>
+        <li>Installed milling capacity of 8 tons per hour</li>
+      </ul>
+      <div class="btn-row" style="margin-top:26px">
+        <a href="about.html" class="btn btn-outline">Learn More About Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section class="section tint">
+  <div class="shell">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Why Choose Us</span>
+      <h2>Built on Trust and Consistency</h2>
+      <p>Reliability is the outcome of how we source, how we mill, and how we handle every order that leaves Raichur.</p>
+    </div>
+
+    <div class="card-grid cols-4">
+      <article class="card reveal">
+        <div class="card-ico"><svg viewBox="0 0 32 32"><path d="M16 3l11 5v8c0 7-4.6 11.6-11 13C9.6 27.6 5 23 5 16V8l11-5Z"/><path d="m11.5 16.2 3.2 3.3 6-6.4"/></svg></div>
+        <h3>Trusted Since 2016</h3>
+        <p>Long-standing supply relationships built across Karnataka.</p>
+      </article>
+      <article class="card reveal" data-delay="60">
+        <div class="card-ico"><svg viewBox="0 0 32 32"><path d="M16 28V13"/><path d="M16 15c-5-1-7-4-7-9 5 0 8 3 7 9Z"/><path d="M16 18c5-1 7-4 7-9-5 0-8 3-7 9Z"/></svg></div>
+        <h3>Direct Farm Sourcing</h3>
+        <p>Paddy procured straight from farmers across Raichur district.</p>
+      </article>
+      <article class="card reveal" data-delay="120">
+        <div class="card-ico"><svg viewBox="0 0 32 32"><rect x="4" y="12" width="24" height="16" rx="2"/><path d="M9 12V7h6v5M17 12V9h6v3M11 20h3M18 20h3"/></svg></div>
+        <h3>Modern Infrastructure</h3>
+        <p>A modern plant built for precision, throughput and grain integrity.</p>
+      </article>
+      <article class="card reveal" data-delay="180">
+        <div class="card-ico"><svg viewBox="0 0 32 32"><path d="M16 4c4 4 7 7 7 12a7 7 0 1 1-14 0c0-5 3-8 7-12Z"/><path d="M13 18a3 3 0 0 0 3 3"/></svg></div>
+        <h3>Hygienic Standards</h3>
+        <p>Clean handling and controlled processing at every stage.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card-ico"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><path d="M16 9v7l5 3"/></svg></div>
+        <h3>8 Tons Per Hour</h3>
+        <p>Installed capacity that absorbs bulk and seasonal demand.</p>
+      </article>
+      <article class="card reveal" data-delay="60">
+        <div class="card-ico"><svg viewBox="0 0 32 32"><path d="M5 22V10l11-5 11 5v12"/><path d="M5 22h22M11 22v-6h10v6"/></svg></div>
+        <h3>Consistent Quality</h3>
+        <p>A repeatable grain profile, order after order.</p>
+      </article>
+      <article class="card reveal" data-delay="120">
+        <div class="card-ico"><svg viewBox="0 0 32 32"><path d="M3 20V9h15v11"/><path d="M18 13h6l5 5v2h-11z"/><circle cx="9" cy="23" r="2.6"/><circle cx="23" cy="23" r="2.6"/></svg></div>
+        <h3>Timely Deliveries</h3>
+        <p>Dispatch schedules our buyers can plan their week around.</p>
+      </article>
+      <article class="card reveal" data-delay="180">
+        <div class="card-ico"><svg viewBox="0 0 32 32"><circle cx="16" cy="12" r="5"/><path d="M6 27c1.5-5.5 5.4-8 10-8s8.5 2.5 10 8"/></svg></div>
+        <h3>Customer-First Approach</h3>
+        <p>Requirements heard and honoured, from enquiry to repeat order.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS PREVIEW ============ -->
+<section class="section">
+  <div class="shell">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Products</span>
+      <h2>A Carefully Curated Range</h2>
+      <p>
+        We offer a carefully curated range of agricultural products processed with uncompromising
+        attention to quality, ensuring they meet the diverse requirements of households, wholesalers,
+        distributors, and industrial buyers.
+      </p>
+    </div>
+
+    <div class="card-grid cols-4">
+      <a class="product-card reveal" href="products.html#raw-rice">
+        <div class="pc-media"><img src="public/products/mrn new blue.png" alt="MRN raw rice pack" loading="lazy" /></div>
+        <div class="pc-body"><h3>Raw Rice</h3><p>Milled and polished without parboiling, with a clean, natural grain.</p></div>
+      </a>
+      <a class="product-card reveal" data-delay="60" href="products.html#boiled-rice">
+        <div class="pc-media"><img src="public/products/MRN NEW GREEN.png" alt="MRN boiled rice pack" loading="lazy" /></div>
+        <div class="pc-body"><h3>Boiled Rice</h3><p>Parboiled under controlled conditions for firm, separate grains.</p></div>
+      </a>
+      <a class="product-card reveal" data-delay="120" href="products.html#rice-bran">
+        <div class="pc-media"><img src="public/products/mrn new pista.png" alt="MRN rice bran" loading="lazy" /></div>
+        <div class="pc-body"><h3>Rice Bran</h3><p>Nutrient-rich by-product for oil extraction and feed manufacturers.</p></div>
+      </a>
+      <a class="product-card reveal" data-delay="180" href="products.html#rice-husk">
+        <div class="pc-media"><img src="public/products/mrn new grey.png" alt="MRN rice husk" loading="lazy" /></div>
+        <div class="pc-body"><h3>Rice Husk</h3><p>Clean, well-separated husk supplied as biomass and raw material.</p></div>
+      </a>
+    </div>
+
+    <div class="btn-row reveal" style="margin-top:32px">
+      <a href="products.html" class="btn">View All Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUALITY PROMISE ============ -->
+<section class="section dark">
+  <div class="shell">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Quality Promise</span>
+      <h2>Quality You Can Trust</h2>
+      <p>
+        Every grain that leaves our facility undergoes careful processing to preserve its quality,
+        purity, and nutritional value. Our dedication to maintaining high standards enables us to
+        serve customers with products they can consistently rely on.
+      </p>
+    </div>
+
+    <ol class="process">
+      <li><h3>Farmers</h3><p>Sourced directly from growers across Raichur district.</p></li>
+      <li><h3>Paddy Selection</h3><p>Incoming paddy assessed and graded before milling.</p></li>
+      <li><h3>Modern Processing</h3><p>Milling calibrated to protect the grain structure.</p></li>
+      <li><h3>Quality Checks</h3><p>Purity and consistency verified before approval.</p></li>
+      <li><h3>Packaging</h3><p>Sealed hygienically in branded packs.</p></li>
+      <li><h3>Customer Delivery</h3><p>Dispatched on schedule to buyers across segments.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section tint">
+  <div class="shell">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Testimonials</span>
+      <h2>What Our Partners Say</h2>
+    </div>
+    <div class="card-grid cols-3">
+      <figure class="t-card reveal">
+        <blockquote>Consistent quality and timely deliveries have made MRN Agro Industries a reliable business partner for us.</blockquote>
+        <figcaption><strong>Wholesale Partner</strong><span>Karnataka</span></figcaption>
+      </figure>
+      <figure class="t-card reveal" data-delay="80">
+        <blockquote>Their commitment to maintaining product standards is evident in every order we receive.</blockquote>
+        <figcaption><strong>Distribution Partner</strong><span>South India</span></figcaption>
+      </figure>
+      <figure class="t-card reveal" data-delay="160">
+        <blockquote>A trusted name that combines quality products with excellent customer service.</blockquote>
+        <figcaption><strong>Retail Buyer</strong><span>Raichur</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section cta-band">
+  <div class="shell reveal">
+    <h2>Looking for Premium Quality Rice Products?</h2>
+    <p>Whether you're a wholesaler, distributor, or business partner, we're here to serve your requirements with reliability and excellence.</p>
+    <div class="btn-row"><a href="contact.html" class="btn btn-light">Contact Us Today</a></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div class="f-brand">
+      <span class="brand-mark"><img src="public/logo.jpeg" alt="MRN Agro Industries logo" /></span>
+      <p class="f-tag">Rice milling, processing and distribution from Raichur, Karnataka. Rooted in quality since 2016.</p>
+    </div>
+    <div class="f-col">
+      <h4>Company</h4>
+      <a href="index.html">Home</a><a href="about.html">About Us</a><a href="products.html">Products</a><a href="contact.html">Contact Us</a>
+    </div>
+    <div class="f-col">
+      <h4>Products</h4>
+      <a href="products.html#raw-rice">Raw Rice</a><a href="products.html#boiled-rice">Boiled Rice</a><a href="products.html#rice-bran">Rice Bran</a><a href="products.html#rice-husk">Rice Husk</a>
+    </div>
+    <div class="f-col">
+      <h4>Reach Us</h4>
+      <p>MRN Agro Industries<br />Raichur, Karnataka, India</p>
+      <a href="mailto:info@mrnagro.in">info@mrnagro.in</a>
+    </div>
+  </div>
+  <div class="shell footer-base">
+    <span>&copy; <span id="year">2026</span> MRN Agro Industries. All rights reserved.</span>
+    <span>Established 2016 &middot; Raichur</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

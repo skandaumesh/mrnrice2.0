@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact Us — MRN Agro Industries, Raichur</title>
+<meta name="description" content="Contact MRN Agro Industries in Raichur, Karnataka for raw rice, boiled rice, rice bran and rice husk enquiries from wholesalers, distributors and industrial buyers." />
+<link rel="icon" href="public/logo.jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><img src="public/logo.jpeg" alt="MRN Agro Industries logo" /></span>
+      <span class="brand-type"><strong>MRN Agro Industries</strong><em>Raichur, Karnataka</em></span>
+    </a>
+    <nav class="nav" id="primaryNav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html" class="nav-cta">Contact Us</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ PAGE BANNER ============ -->
+<section class="page-hero">
+  <div class="hero-scene" aria-hidden="true">
+    <svg class="hero-sky" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0C2A1B" /><stop offset="100%" stop-color="#2A5A38" />
+        </linearGradient>
+      </defs>
+      <rect width="1440" height="400" fill="url(#sky)" />
+    </svg>
+    <svg class="paddy" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice" data-stalks="26" data-color="#06170D" data-opacity="0.65"></svg>
+    <div class="hero-scrim"></div>
+  </div>
+  <div class="shell page-hero-inner">
+    <p class="crumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Contact Us</p>
+    <h1>Contact Us</h1>
+    <p>
+      Whether you're a wholesaler, distributor, or business partner, we're here to serve your
+      requirements with reliability and excellence.
+    </p>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section">
+  <div class="shell contact-grid">
+
+    <div class="reveal">
+      <span class="eyebrow">Get in Touch</span>
+      <h2>We'd Be Glad to Hear From You</h2>
+      <p class="muted" style="margin-top:14px">
+        Reach us during working hours for product availability, pricing and delivery timelines.
+        For bulk requirements, sharing your quantity and location helps us respond faster.
+      </p>
+
+      <ul class="info-list" style="margin-top:26px">
+        <li>
+          <span class="info-ico"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.4 7-11a7 7 0 1 0-14 0c0 4.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+          <div>
+            <h3>Factory &amp; Office</h3>
+            <p>MRN Agro Industries<br />Raichur, Karnataka, India</p>
+          </div>
+        </li>
+        <li>
+          <span class="info-ico"><svg viewBox="0 0 24 24"><path d="M4.5 5.5c0 8 6 14 14 14l1.5-3-4-2-2 2a13 13 0 0 1-6.5-6.5l2-2-2-4-3 1.5Z"/></svg></span>
+          <div>
+            <h3>Phone</h3>
+            <p><a href="tel:+910000000000">+91 00000 00000</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="info-ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></span>
+          <div>
+            <h3>Email</h3>
+            <p><a href="mailto:info@mrnagro.in">info@mrnagro.in</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="info-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></svg></span>
+          <div>
+            <h3>Working Hours</h3>
+            <p>Monday to Saturday, 9:00 AM &ndash; 6:00 PM</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="form-card reveal" data-delay="80">
+      <h2 style="font-size:1.4rem">Send an Enquiry</h2>
+      <p class="muted" style="margin:10px 0 24px; font-size:.94rem">Fill in your requirement and our team will get back to you.</p>
+
+      <form id="enquiryForm" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="company">Company / Firm</label>
+            <input type="text" id="company" name="company" autocomplete="organization" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="product">Product of Interest</label>
+            <select id="product" name="product">
+              <option>Raw Rice</option>
+              <option>Boiled Rice</option>
+              <option>Rice Bran</option>
+              <option>Rice Husk</option>
+              <option>Multiple / Not sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="quantity">Approximate Quantity</label>
+            <input type="text" id="quantity" name="quantity" placeholder="e.g. 10 tons per month" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">Your Requirement</label>
+          <textarea id="message" name="message" placeholder="Delivery location, packing preference, timelines..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center">Submit Enquiry</button>
+        <p class="form-note">By submitting, you agree to be contacted regarding your enquiry.</p>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAP ============ -->
+<section class="section tint" style="padding-top:0">
+  <div class="shell reveal">
+    <div class="map-embed">
+      <p>
+        Map placeholder &mdash; replace this block with your Google Maps embed code<br />
+        (Google Maps &rarr; Share &rarr; Embed a map &rarr; paste the &lt;iframe&gt; here).
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section cta-band">
+  <div class="shell reveal">
+    <h2>Looking for Premium Quality Rice Products?</h2>
+    <p>Share your requirement and we'll respond with availability, pricing and delivery timelines.</p>
+    <div class="btn-row"><a href="mailto:info@mrnagro.in" class="btn btn-light">Email Us Directly</a></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div class="f-brand">
+      <span class="brand-mark"><img src="public/logo.jpeg" alt="MRN Agro Industries logo" /></span>
+      <p class="f-tag">Rice milling, processing and distribution from Raichur, Karnataka. Rooted in quality since 2016.</p>
+    </div>
+    <div class="f-col">
+      <h4>Company</h4>
+      <a href="index.html">Home</a><a href="about.html">About Us</a><a href="products.html">Products</a><a href="contact.html">Contact Us</a>
+    </div>
+    <div class="f-col">
+      <h4>Products</h4>
+      <a href="products.html#raw-rice">Raw Rice</a><a href="products.html#boiled-rice">Boiled Rice</a><a href="products.html#rice-bran">Rice Bran</a><a href="products.html#rice-husk">Rice Husk</a>
+    </div>
+    <div class="f-col">
+      <h4>Reach Us</h4>
+      <p>MRN Agro Industries<br />Raichur, Karnataka, India</p>
+      <a href="mailto:info@mrnagro.in">info@mrnagro.in</a>
+    </div>
+  </div>
+  <div class="shell footer-base">
+    <span>&copy; <span id="year">2026</span> MRN Agro Industries. All rights reserved.</span>
+    <span>Established 2016 &middot; Raichur</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
