@@ -1,6 +1,8 @@
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
+import FloatingInquiry from "@/components/FloatingInquiry";
 
 export const metadata = {
   metadataBase: new URL("https://mrnagro.in"),
@@ -20,7 +22,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#0F3320"
+  themeColor: "#081C17"
 };
 
 export default function RootLayout({ children }) {
@@ -30,14 +32,16 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
       <body>
+        <ScrollProgress />
         <Header />
         <main>{children}</main>
         <Footer />
+        <FloatingInquiry />
       </body>
     </html>
   );

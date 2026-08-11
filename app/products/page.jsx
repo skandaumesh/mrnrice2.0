@@ -3,6 +3,7 @@ import Banner from "@/components/Banner";
 import Reveal from "@/components/Reveal";
 import ProcessSteps from "@/components/ProcessSteps";
 import CTA from "@/components/CTA";
+import TiltCard from "@/components/TiltCard";
 import { products } from "@/lib/products";
 import { photos } from "@/lib/photos";
 
@@ -31,19 +32,21 @@ export default function ProductsPage() {
       {/* ---------- QUICK GRID ---------- */}
       <section className="section">
         <div className="shell grid g4">
-          {products.map((p, i) => (
-            <Reveal key={p.slug} >
-              <a href={`#${p.slug}`} className="pcard" style={{ height: "100%" }}>
-                <div className="pcard-media">
-                  <img src={p.image} alt={`${p.name} pack`} />
-                </div>
-                <div className="pcard-body">
-                  <span className="pcard-no">{p.no}</span>
-                  <h3>{p.name}</h3>
-                  <p>{p.short}</p>
-                  <span className="pcard-more">Read more <i>&rarr;</i></span>
-                </div>
-              </a>
+          {products.map((p) => (
+            <Reveal key={p.slug}>
+              <TiltCard className="pcard" style={{ height: "100%" }}>
+                <a href={`#${p.slug}`} style={{ display: "flex", flexDirection: "column", height: "100%", color: "inherit" }}>
+                  <div className="pcard-media">
+                    <img src={p.image} alt={`${p.name} pack`} />
+                  </div>
+                  <div className="pcard-body">
+                    <span className="pcard-no">{p.no}</span>
+                    <h3>{p.name}</h3>
+                    <p>{p.short}</p>
+                    <span className="pcard-more">Read details <i>&rarr;</i></span>
+                  </div>
+                </a>
+              </TiltCard>
             </Reveal>
           ))}
         </div>
@@ -80,7 +83,7 @@ export default function ProductsPage() {
                 </dl>
 
                 <div className="btn-row" style={{ marginTop: 24 }}>
-                  <Link href="/contact" className="btn btn-outline">
+                  <Link href={`/contact?product=${encodeURIComponent(p.name)}`} className="btn btn-gold">
                     Enquire about {p.name} <span className="arw">&rarr;</span>
                   </Link>
                 </div>
@@ -94,12 +97,10 @@ export default function ProductsPage() {
       <section className="section dark">
         <div className="shell">
           <Reveal className="section-head">
-            <span className="eyebrow">Quality promise</span>
-            <h2>Quality you can trust</h2>
+            <span className="eyebrow">Interactive Quality Explorer</span>
+            <h2>Quality Process You Can Inspect</h2>
             <p>
-              Every grain that leaves our facility undergoes careful processing to preserve its
-              quality, purity, and nutritional value. Our dedication to maintaining high standards
-              enables us to serve customers with products they can consistently rely on.
+              Hover or click each step below to inspect precise milling and purity parameters.
             </p>
           </Reveal>
 
@@ -116,10 +117,12 @@ export default function ProductsPage() {
           </Reveal>
 
           <div className="grid g4">
-            {buyers.map((b, i) => (
-              <Reveal key={b.title} className="card">
-                <h3>{b.title}</h3>
-                <p>{b.text}</p>
+            {buyers.map((b) => (
+              <Reveal key={b.title}>
+                <TiltCard className="card" style={{ height: "100%" }}>
+                  <h3>{b.title}</h3>
+                  <p>{b.text}</p>
+                </TiltCard>
               </Reveal>
             ))}
           </div>

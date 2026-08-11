@@ -5,14 +5,17 @@ import Photo from "@/components/Photo";
 import Reveal from "@/components/Reveal";
 import Counter from "@/components/Counter";
 import CTA from "@/components/CTA";
-import { products, reasons, testimonials } from "@/lib/products";
+import HeroSpotlight from "@/components/HeroSpotlight";
+import ProductGridInteractive from "@/components/ProductGridInteractive";
+import TiltCard from "@/components/TiltCard";
+import { reasons, testimonials } from "@/lib/products";
 import { photos } from "@/lib/photos";
 
 export default function HomePage() {
   return (
     <>
       {/* ---------- HERO ---------- */}
-      <section className="hero">
+      <HeroSpotlight className="hero">
         <div className="shell hero-grid">
           <div className="hero-copy">
             <p className="hero-place">Raichur, Karnataka &middot; Since 2016</p>
@@ -48,7 +51,7 @@ export default function HomePage() {
 
           <ProductShowcase />
         </div>
-      </section>
+      </HeroSpotlight>
 
       {/* ---------- ABOUT ---------- */}
       <section className="section">
@@ -113,35 +116,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------- PRODUCTS ---------- */}
+      {/* ---------- PRODUCTS (INTERACTIVE FILTER & ESTIMATOR) ---------- */}
       <section className="section">
         <div className="shell">
           <Reveal className="section-head">
-            <span className="eyebrow">Our products</span>
-            <h2>A carefully curated range</h2>
+            <span className="eyebrow">Interactive Product Range</span>
+            <h2>Explore Our Grain Products</h2>
             <p>
-              Processed with uncompromising attention to quality, our products meet the diverse
-              requirements of households, wholesalers, distributors, and industrial buyers.
+              Click any product card to launch the **Order Estimator &amp; Logistics Calculator**,
+              or filter by category.
             </p>
           </Reveal>
 
-          <div className="grid g4">
-            {products.map((p) => (
-              <Reveal key={p.slug}>
-                <Link href={`/products#${p.slug}`} className="pcard" style={{ height: "100%" }}>
-                  <div className="pcard-media">
-                    <img src={p.image} alt={`${p.name} pack`} loading="lazy" />
-                  </div>
-                  <div className="pcard-body">
-                    <span className="pcard-no">{p.no}</span>
-                    <h3>{p.name}</h3>
-                    <p>{p.short}</p>
-                    <span className="pcard-more">View details <i>&rarr;</i></span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+          <ProductGridInteractive />
 
           <div className="btn-row" style={{ marginTop: 32 }}>
             <Link href="/products" className="btn">
@@ -178,12 +165,10 @@ export default function HomePage() {
       <section className="section dark">
         <div className="shell">
           <Reveal className="section-head">
-            <span className="eyebrow">Quality promise</span>
-            <h2>Quality you can trust</h2>
+            <span className="eyebrow">Interactive Quality Explorer</span>
+            <h2>Quality Process You Can Inspect</h2>
             <p>
-              Every grain that leaves our facility undergoes careful processing to preserve its
-              quality, purity, and nutritional value. Our dedication to maintaining high standards
-              enables us to serve customers with products they can consistently rely on.
+              Hover or click each step below to inspect precise milling and purity parameters.
             </p>
           </Reveal>
 
@@ -202,13 +187,13 @@ export default function HomePage() {
           <div className="grid g3">
             {testimonials.map((t) => (
               <Reveal key={t.name}>
-                <figure className="tcard">
+                <TiltCard className="tcard">
                   <blockquote>&ldquo;{t.quote}&rdquo;</blockquote>
                   <figcaption>
                     <strong>{t.name}</strong>
                     <span>{t.place}</span>
                   </figcaption>
-                </figure>
+                </TiltCard>
               </Reveal>
             ))}
           </div>
