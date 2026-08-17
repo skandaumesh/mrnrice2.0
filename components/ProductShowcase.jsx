@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { products } from "@/lib/products";
 
-const DURATION = 5000;
+const DURATION = 3200;
 const SWAP = 600; // must match the CSS blur transition length
 
 /**
@@ -15,13 +15,8 @@ export default function ProductShowcase() {
   const [index, setIndex] = useState(0);
   const [prev, setPrev] = useState(null);
   const [paused, setPaused] = useState(false);
-  const [still, setStill] = useState(false);
   const idxRef = useRef(0);
   const timer = useRef(null);
-
-  useEffect(() => {
-    setStill(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  }, []);
 
   const go = useCallback((next) => {
     const cur = idxRef.current;
@@ -32,12 +27,13 @@ export default function ProductShowcase() {
     setIndex(n);
   }, []);
 
-  // auto-advance
+  // auto-advance — keep cycling even under reduced motion (the blur is the
+  // part that's suppressed there, not the product rotation itself)
   useEffect(() => {
-    if (paused || still) return;
+    if (paused) return;
     timer.current = setTimeout(() => go(index + 1), DURATION);
     return () => clearTimeout(timer.current);
-  }, [index, paused, still, go]);
+  }, [index, paused, go]);
 
   // drop the outgoing pack once its blur-out has finished
   useEffect(() => {

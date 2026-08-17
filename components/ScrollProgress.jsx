@@ -28,10 +28,10 @@ export default function ScrollProgress() {
         left: 0,
         width: `${progress}%`,
         height: "3px",
-        background: "linear-gradient(90deg, #F59E0B 0%, #10B981 50%, #34D399 100%)",
+        background: "linear-gradient(90deg, #C0803A 0%, #7FA45C 55%, #5C7A3B 100%)",
         zIndex: 9999,
         transition: "width 0.1s ease-out",
-        boxShadow: "0 0 10px rgba(16, 185, 129, 0.6)"
+        boxShadow: "0 0 8px rgba(92, 122, 59, 0.45)"
       }}
     />
   );
