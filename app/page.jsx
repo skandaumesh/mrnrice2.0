@@ -183,11 +183,11 @@ export default function HomePage() {
           <ul className="reasons">
             {reasons.map((r) => (
               <li key={r.no}>
-                <span className="n">{r.no}</span>
-                <div>
+                <div className="reason-head">
+                  <span className="n">{r.no}</span>
                   <h3>{r.title}</h3>
-                  <p>{r.text}</p>
                 </div>
+                <p>{r.text}</p>
               </li>
             ))}
           </ul>
