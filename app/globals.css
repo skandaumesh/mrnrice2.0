@@ -2307,6 +2307,26 @@ figure.photo {
   .glance li { padding: 22px 12px 24px; }
 }
 
+/* Quick-view modal — it had no breakpoints, so on a phone it kept the
+   two-column layout and the side-by-side calculator fields. */
+@media (max-width: 720px) {
+  .modal-backdrop { padding: 12px; align-items: start; }
+  .modal-content { padding: 20px 18px 24px; max-height: 92vh; }
+
+  .modal-grid { grid-template-columns: 1fr; gap: 18px; }
+
+  /* a short banner rather than a tall portrait frame above the fold */
+  .modal-media { aspect-ratio: auto; height: 200px; padding: 12px; }
+
+  .modal-close { top: 10px; right: 10px; width: 34px; height: 34px; font-size: 1.5rem; }
+
+  .calc-controls { grid-template-columns: 1fr; }
+  .calc-results { flex-direction: column; gap: 10px; }
+
+  .modal-actions { gap: 10px; }
+  .modal-actions .btn { flex: 1 1 100%; justify-content: center; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }

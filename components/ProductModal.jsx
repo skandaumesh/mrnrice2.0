@@ -65,16 +65,10 @@ export default function ProductModal({ product, onClose }) {
           </div>
 
           <div className="modal-body">
-            <span className="eyebrow">{product.categoryLabel}</span>
+            {/* identity only — the full description and features live on the
+                products page; this modal is for working out a quantity */}
             <h2>{product.name}</h2>
             <p className="modal-variety">{product.variety}</p>
-            <p className="lede">{product.description}</p>
-
-            <ul className="tags">
-              {product.features.map((f) => (
-                <li key={f}>{f}</li>
-              ))}
-            </ul>
 
             {/* Interactive Pack & Quantity Estimator */}
             <div className="calc-box">
