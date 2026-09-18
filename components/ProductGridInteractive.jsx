@@ -4,31 +4,26 @@ import { useState } from "react";
 import TiltCard from "@/components/TiltCard";
 import ProductModal from "@/components/ProductModal";
 import Reveal from "@/components/Reveal";
-import { products } from "@/lib/products";
+import { products, packSizes } from "@/lib/products";
 
 const categories = [
-  { id: "all", label: "All Products" },
+  { id: "all", label: "All Varieties" },
   { id: "raw", label: "Raw Rice" },
-  { id: "boiled", label: "Boiled Rice" },
-  { id: "byproducts", label: "By-Products" }
+  { id: "steam", label: "Steam Rice" }
 ];
 
 export default function ProductGridInteractive() {
   const [filter, setFilter] = useState("all");
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const filteredProducts = products.filter((p) => {
-    if (filter === "all") return true;
-    if (filter === "raw") return p.name.toLowerCase().includes("raw");
-    if (filter === "boiled") return p.name.toLowerCase().includes("boiled") || p.name.toLowerCase().includes("steam");
-    if (filter === "byproducts") return p.name.toLowerCase().includes("bran") || p.name.toLowerCase().includes("husk");
-    return true;
-  });
+  const filteredProducts = products.filter(
+    (p) => filter === "all" || p.category === filter
+  );
 
   return (
     <>
       {/* Category Filter Tabs */}
-      <div className="filter-tabs" role="tablist" aria-label="Filter products">
+      <div className="filter-tabs" role="tablist" aria-label="Filter rice varieties">
         {categories.map((c) => (
           <button
             key={c.id}
@@ -57,9 +52,17 @@ export default function ProductGridInteractive() {
               <div className="pcard-body">
                 <span className="pcard-no">{p.no}</span>
                 <h3>{p.name}</h3>
+                <span className="pcard-variety">{p.variety}</span>
                 <p>{p.short}</p>
+
+                <ul className="packs" aria-label="Pack sizes">
+                  {packSizes.map((kg) => (
+                    <li key={kg}>{kg} kg</li>
+                  ))}
+                </ul>
+
                 <span className="pcard-more">
-                  Quick View &amp; Estimator <i>&rarr;</i>
+                  Quick View &amp; Pack Estimator <i>&rarr;</i>
                 </span>
               </div>
             </TiltCard>

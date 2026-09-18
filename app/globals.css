@@ -9,7 +9,10 @@
   --forest-900: #2C3D1E;   /* Forest heading green */
   --forest-800: #5C7A3B;   /* Olive-leaf primary accent */
   --forest-700: #4A6530;   /* Deeper leaf hover */
-  --forest-100: #E8EFD7;   /* Soft sage tint */
+  /* Tint surface — dark green. Anything sitting on it uses --on-forest-tint. */
+  --forest-tint: #25341B;      /* Chip / icon / pill surface (was a light sage) */
+  --forest-tint-hi: #334724;   /* Lifted edge + hover for the tint */
+  --on-forest-tint: #E4EDD3;   /* Text and icons on the dark tint */
 
   /* Harvest — terracotta, wheat & straw */
   --gold-700: #A65E2C;    /* Terracotta / deep harvest */
@@ -18,7 +21,7 @@
   --gold-100: #F2E7CD;    /* Soft cream */
 
   /* Natural accent tints (kept under the old names) */
-  --emerald-glow: #7FA45C;   /* Fresh leaf green */
+  --emerald-glow: #44602B;   /* Deep leaf green */
   --amber-glow: #C99A3E;     /* Warm wheat */
 
   /* Ink — warm earth, not cool slate */
@@ -40,6 +43,8 @@
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* Layout & Geometry */
+  --header-h: 77px;   /* 48px brand mark + 14px padding x2 + 1px border */
+  --tabs-h: 70px;   /* jump bar: 44px pill + 12px padding x2 + 1px border */
   --shell: 1240px;
   --gutter: clamp(20px, 5vw, 48px);
   --section-y: clamp(76px, 9vw, 136px);
@@ -60,6 +65,18 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+}
+
+/* Keep anchored sections and product rows clear of the sticky header */
+section[id],
+article[id] {
+  scroll-margin-top: calc(var(--header-h) + 20px);
+}
+
+/* On the home page the jump bar sticks below the header, so its sections
+   have to clear both. The bar precedes every one of them in <main>. */
+.section-tabs ~ section[id] {
+  scroll-margin-top: calc(var(--header-h) + var(--tabs-h) + 18px);
 }
 
 body {
@@ -224,10 +241,10 @@ p:last-child {
   border-radius: 999px;
   font-size: 0.92rem;
   font-weight: 600;
-  background: linear-gradient(135deg, var(--emerald-glow) 0%, var(--forest-800) 100%);
+  background: linear-gradient(135deg, var(--emerald-glow) 0%, var(--forest-950) 100%);
   color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 24px -8px rgba(92, 122, 59, 0.45);
+  box-shadow: 0 10px 24px -8px rgba(27, 40, 20, 0.45);
   transition: all 0.3s var(--ease);
   position: relative;
   overflow: hidden;
@@ -244,7 +261,7 @@ p:last-child {
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 32px -8px rgba(92, 122, 59, 0.55);
+  box-shadow: 0 16px 32px -8px rgba(27, 40, 20, 0.5);
 }
 
 .btn:hover::before {
@@ -279,9 +296,9 @@ p:last-child {
 }
 
 .btn-outline:hover {
-  background: var(--forest-100);
-  border-color: var(--forest-800);
-  color: var(--forest-900);
+  background: var(--forest-tint);
+  border-color: var(--forest-tint);
+  color: #FFFFFF;
 }
 
 .btn-light {
@@ -389,8 +406,8 @@ p:last-child {
 }
 
 .nav a:hover {
-  color: var(--forest-800);
-  background: var(--forest-100);
+  color: #FFFFFF;
+  background: var(--forest-tint);
 }
 
 .nav a.active {
@@ -409,7 +426,7 @@ p:last-child {
 }
 
 .nav .cta:hover {
-  background: linear-gradient(135deg, var(--emerald-glow) 0%, var(--forest-800) 100%);
+  background: linear-gradient(135deg, var(--emerald-glow) 0%, var(--forest-950) 100%);
   color: #FFFFFF;
   transform: translateY(-2px);
 }
@@ -466,32 +483,6 @@ figure.photo {
 
 .photo-frame:hover img {
   transform: scale(1.03);
-}
-
-.photo figcaption {
-  display: flex;
-  justify-content: space-between;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-  font-size: 0.78rem;
-  color: var(--ink-500);
-}
-
-.photo figcaption em {
-  font-family: var(--serif);
-  font-style: normal;
-  font-weight: 600;
-  font-size: 0.84rem;
-  color: var(--ink-700);
-}
-
-.dark .photo figcaption {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.dark .photo figcaption em {
-  color: rgba(255, 255, 255, 0.8);
 }
 
 /* =========================================================
@@ -568,42 +559,72 @@ figure.photo {
   margin-bottom: 30px;
 }
 
-.hero-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  margin-top: 36px;
-  padding-top: 26px;
-  border-top: 1px solid var(--line);
+/* Facts strip (About) — the light counterpart to the home page's glance ribbon */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(14px, 1.6vw, 22px);
 }
 
-.hero-meta div {
+.facts li {
+  position: relative;
   display: flex;
   flex-direction: column;
+  padding: 24px 22px 26px;
+  border-radius: var(--r-sm);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease),
+    border-color 0.3s var(--ease);
 }
 
-.hero-meta b {
+/* short harvest-gold accent along the top edge, as on the glance cards */
+.facts li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 22px;
+  width: 34px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(90deg, var(--gold-500) 0%, var(--gold-700) 100%);
+}
+
+.facts li:hover {
+  transform: translateY(-4px);
+  border-color: rgba(92, 122, 59, 0.3);
+  box-shadow: var(--shadow);
+}
+
+/* Direct children only — Counter renders its number in a nested <span>, which
+   must inherit the value styling rather than pick up the label rule. */
+.facts > li > b {
   font-family: var(--serif);
-  font-size: 1.55rem;
+  font-size: clamp(1.35rem, 1.9vw, 1.75rem);
   font-weight: 800;
-  color: var(--forest-900);
   line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--forest-900);
+  font-variant-numeric: tabular-nums;
 }
 
-.hero-meta b i {
+.facts > li > b i {
   font-style: normal;
   font-size: 0.78rem;
-  color: var(--gold-700);
   font-weight: 600;
+  color: var(--gold-700);
+  letter-spacing: 0;
 }
 
-.hero-meta span {
+.facts > li > span {
+  margin-top: 10px;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-500);
   font-weight: 600;
-  margin-top: 4px;
+  color: var(--ink-500);
 }
 
 .stage {
@@ -614,7 +635,7 @@ figure.photo {
   position: relative;
   display: grid;
   place-items: center;
-  height: clamp(410px, 44vw, 530px);
+  height: clamp(440px, 46vw, 580px);
 }
 
 /* Vibrant glowing stage backdrop ring */
@@ -622,19 +643,19 @@ figure.photo {
   content: "";
   position: absolute;
   z-index: 0;
-  width: min(390px, 80%);
+  width: min(440px, 86%);
   aspect-ratio: 1;
   border-radius: 50%;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle at 35% 30%, #F5EACB 0%, #DDE6BE 45%, #C3D49B 100%);
-  box-shadow: 0 25px 65px -20px rgba(92, 122, 59, 0.45);
+  background: radial-gradient(circle at 35% 30%, #3E5528 0%, #24331A 45%, #16210F 100%);
+  box-shadow: 0 25px 65px -20px rgba(22, 33, 15, 0.5);
   animation: pulseGlow 6s ease-in-out infinite alternate;
 }
 
 @keyframes pulseGlow {
-  0% { transform: translate(-50%, -50%) scale(0.96); box-shadow: 0 25px 65px -20px rgba(92, 122, 59, 0.35); }
+  0% { transform: translate(-50%, -50%) scale(0.96); box-shadow: 0 25px 65px -20px rgba(22, 33, 15, 0.42); }
   100% { transform: translate(-50%, -50%) scale(1.04); box-shadow: 0 35px 85px -15px rgba(192, 128, 58, 0.45); }
 }
 
@@ -642,7 +663,7 @@ figure.photo {
   position: absolute;
   bottom: 4%;
   left: 50%;
-  width: 42%;
+  width: 46%;
   height: 24px;
   transform: translateX(-50%);
   background: radial-gradient(ellipse at center, rgba(43, 34, 18, 0.30), transparent 68%);
@@ -657,8 +678,9 @@ figure.photo {
   align-self: center;
   z-index: 1;
   width: auto;
-  max-width: 64%;
-  max-height: 78%;
+  max-width: 72%;
+  /* leaves room for the 16px packFloat travel — .hero clips with overflow:hidden */
+  max-height: 88%;
   height: auto;
   transform-origin: center bottom;
 }
@@ -837,7 +859,7 @@ figure.photo {
   width: 22px;
   height: 22px;
   margin-top: 2px;
-  background: var(--forest-100) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M5 10.5l3.2 3.2L15 7' fill='none' stroke='%23059669' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/15px no-repeat;
+  background: var(--forest-tint) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M5 10.5l3.2 3.2L15 7' fill='none' stroke='%23E4EDD3' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/15px no-repeat;
   border-radius: 50%;
 }
 
@@ -853,40 +875,54 @@ figure.photo {
 /* Reasons — Editorial list */
 .reasons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0 clamp(32px, 5vw, 76px);
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 1.8vw, 22px);
 }
 
+/* Each reason is a card: badge stacked above the text so long titles get the
+   full card width rather than sharing the line with the number. */
 .reasons li {
   display: flex;
-  gap: 22px;
-  padding: 24px 0;
-  border-top: 1px solid var(--line);
+  flex-direction: column;
+  gap: 15px;
+  padding: clamp(22px, 2.2vw, 28px);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+
+.reasons li:hover {
+  transform: translateY(-5px);
+  border-color: rgba(92, 122, 59, 0.3);
+  box-shadow: var(--shadow);
 }
 
 .reasons .n {
   font-family: var(--serif);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-weight: 800;
-  color: var(--gold-600);
-  background: var(--gold-100);
-  width: 32px;
-  height: 32px;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-700) 100%);
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   flex: none;
-  border: 1px solid rgba(192, 128, 58, 0.3);
+  box-shadow: 0 6px 14px -6px rgba(192, 128, 58, 0.7);
 }
 
 .reasons h3 {
-  font-size: 1.1rem;
-  margin-bottom: 6px;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
 }
 
 .reasons p {
   margin: 0;
-  font-size: 0.94rem;
+  font-size: 0.9rem;
   color: var(--ink-500);
 }
 
@@ -968,16 +1004,27 @@ figure.photo {
 }
 
 .pcard-media {
-  aspect-ratio: 4/3.2;
-  display: grid;
-  place-items: center;
-  padding: 22px;
+  /* A bounded height, not an aspect-ratio: the packs are portrait, so a
+     ratio-sized box grows with the card and the pack grows with it. */
+  height: clamp(180px, 18vw, 230px);
+  flex: none;
+  /* flex, not grid: a grid's auto row is sized BY the image, so the image's
+     max-height:100% resolves against itself, the constraint is dropped, and
+     the pack sizes by width and overflows. A flex box with a definite
+     height gives the percentage something real to resolve against. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 14px;
   background: radial-gradient(circle at 50% 50%, #F3EEDE 0%, #E9E1C9 100%);
 }
 
 .pcard-media img {
+  max-width: 100%;
   max-height: 100%;
   width: auto;
+  height: auto;
   object-fit: contain;
   transition: transform 0.4s var(--ease);
 }
@@ -1046,19 +1093,24 @@ figure.photo {
 }
 
 .prow-media {
-  background: radial-gradient(circle, var(--sand) 0%, #E4F5EB 100%);
-  border: 1px solid var(--line);
+  background: radial-gradient(circle at 50% 45%, #334724 0%, var(--forest-950) 100%);
+  border: 1px solid rgba(22, 33, 15, 0.35);
   border-radius: var(--r);
   box-shadow: var(--shadow-sm);
-  display: grid;
-  place-items: center;
-  padding: 30px;
-  aspect-ratio: 4/3.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 24px;
+  aspect-ratio: 4/4.05;
+  max-height: 420px;
 }
 
 .prow-media img {
+  max-width: 100%;
   max-height: 100%;
   width: auto;
+  height: auto;
   object-fit: contain;
 }
 
@@ -1113,11 +1165,12 @@ figure.photo {
 }
 
 .tags li {
+  flex: none;   /* wrap to the next row rather than squeezing the label */
   font-size: 0.73rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--forest-800);
-  background: var(--forest-100);
+  color: var(--on-forest-tint);
+  background: var(--forest-tint);
   padding: 6px 12px;
   border-radius: 999px;
   font-weight: 600;
@@ -1160,9 +1213,10 @@ figure.photo {
   font-weight: 800;
   font-size: 1.05rem;
   color: #FFFFFF;
-  background: linear-gradient(135deg, var(--emerald-glow) 0%, var(--forest-800) 100%);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 0 8px var(--forest-950), 0 8px 20px rgba(92, 122, 59, 0.35);
+  background: linear-gradient(135deg, var(--emerald-glow) 0%, var(--forest-950) 100%);
+  /* the node fill is now close to the dark section behind it — the ring carries the edge */
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 0 8px var(--forest-950), 0 8px 20px rgba(22, 33, 15, 0.45);
   transition: all 0.3s var(--ease);
 }
 
@@ -1334,14 +1388,16 @@ figure.photo {
   align-items: start;
 }
 
-.info li {
+/* Direct children only — these rows contain nested <li> chips (.tags), which
+   must keep their own pill padding rather than inherit the row layout. */
+.info > li {
   display: flex;
   gap: 18px;
   padding: 20px 0;
   border-bottom: 1px solid var(--line-soft);
 }
 
-.info li:first-child {
+.info > li:first-child {
   border-top: 1px solid var(--line-soft);
 }
 
@@ -1350,11 +1406,11 @@ figure.photo {
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background: var(--forest-100);
+  background: var(--forest-tint);
   display: grid;
   place-items: center;
-  color: var(--forest-800);
-  border: 1px solid rgba(92, 122, 59, 0.2);
+  color: var(--on-forest-tint);
+  border: 1px solid var(--forest-tint-hi);
 }
 
 .info-ico svg {
@@ -1447,9 +1503,9 @@ figure.photo {
   padding: 12px 16px;
   border-radius: 10px;
   font-size: 0.92rem;
-  background: var(--forest-100);
-  color: var(--forest-800);
-  border: 1px solid rgba(92, 122, 59, 0.3);
+  background: var(--forest-tint);
+  color: var(--on-forest-tint);
+  border: 1px solid var(--forest-tint-hi);
   font-weight: 500;
 }
 
@@ -1511,14 +1567,6 @@ figure.photo {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.45);
-}
-
-.footer-credit {
-  padding-bottom: 22px;
-  font-size: 0.75rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.35);
-  max-width: 78ch;
 }
 
 /* Animations */
@@ -1626,17 +1674,23 @@ figure.photo {
 
 .modal-media {
   position: relative;
-  background: radial-gradient(circle, var(--sand) 0%, #E2F4E9 100%);
+  background: radial-gradient(circle at 50% 45%, #334724 0%, var(--forest-950) 100%);
   border-radius: var(--r-sm);
-  padding: 24px;
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--line);
+  padding: 16px;
+  aspect-ratio: 4/4.5;
+  max-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(22, 33, 15, 0.35);
 }
 
 .modal-media img {
+  max-width: 100%;
   max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
 }
 
@@ -1867,9 +1921,9 @@ figure.photo {
 @media (max-width: 1000px) {
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .hero-copy { max-width: none; }
-  .stage-canvas { height: clamp(350px, 68vw, 470px); }
-  .stage-canvas::before { width: min(370px, 72%); }
-  .stage-pack { max-width: 58%; max-height: 84%; }
+  .stage-canvas { height: clamp(390px, 72vw, 520px); }
+  .stage-canvas::before { width: min(410px, 78%); }
+  .stage-pack { max-width: 68%; max-height: 90%; }
   .g4 { grid-template-columns: repeat(2, 1fr); }
   .promise { grid-template-columns: 1fr; }
   .journey { grid-template-columns: repeat(3, 1fr); row-gap: clamp(32px, 4.5vw, 46px); }
@@ -1900,7 +1954,6 @@ figure.photo {
 
   .split, .split.wide-left, .split.wide-right { grid-template-columns: 1fr; }
   .split .photo { order: -1; }
-  .reasons { grid-template-columns: 1fr; }
   .g3 { grid-template-columns: repeat(2, 1fr); }
   .contact-grid, .prow { grid-template-columns: 1fr; }
   .prow-media { order: -1; }
@@ -1912,10 +1965,9 @@ figure.photo {
   .journey { grid-template-columns: repeat(2, 1fr); column-gap: 20px; }
   .frow, .specs { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
-  .hero-meta { gap: 20px 28px; }
   .btn-row .btn { flex: 1 1 auto; justify-content: center; }
-  .stage-canvas { height: clamp(330px, 86vw, 430px); }
-  .stage-pack { max-width: 62%; max-height: 86%; }
+  .stage-canvas { height: clamp(360px, 92vw, 470px); }
+  .stage-pack { max-width: 72%; max-height: 88%; }
   .stage-tabs { gap: 0 18px; justify-content: center; }
   .stage-tab { font-size: 0.84rem; }
 }
@@ -1925,6 +1977,319 @@ figure.photo {
   .jnode { width: 52px; height: 52px; }
   .brand-type span { display: none; }
   .cta-panel { border-radius: 22px; }
+}
+
+/* =========================================================
+   MRN GOLD — range, packs, glance band & contact
+   ========================================================= */
+
+/* Sticky in-page jump bar, sitting directly beneath the site header */
+.section-tabs {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 250;                 /* under the header (300), over page content */
+  padding-block: 12px;
+  background: rgba(251, 247, 235, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.section-tabs-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* same pill language as the product category filter */
+.section-tabs a {
+  padding: 9px 20px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--forest-900);
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  transition: all 0.25s var(--ease);
+}
+
+.section-tabs a:hover {
+  background: var(--sand);
+  border-color: rgba(92, 122, 59, 0.4);
+}
+
+.section-tabs a.on {
+  color: #FFFFFF;
+  background: linear-gradient(135deg, var(--forest-900) 0%, var(--forest-950) 100%);
+  border-color: var(--forest-900);
+  box-shadow: 0 6px 18px -4px rgba(43, 34, 18, 0.3);
+}
+
+@media (max-width: 720px) {
+  /* wrapped rows would eat the viewport if this stayed pinned */
+  .section-tabs { position: static; }
+  .section-tabs ~ section[id] { scroll-margin-top: calc(var(--header-h) + 20px); }
+  .section-tabs a { padding: 8px 16px; font-size: 0.82rem; }
+  .section-tabs-inner { gap: 8px; }
+}
+
+/* "At a glance" — stat ribbon sitting directly under the hero */
+.glance-band {
+  position: relative;
+  background: linear-gradient(135deg, #26361B 0%, var(--forest-950) 100%);
+  padding-block: clamp(30px, 3.6vw, 48px);
+}
+
+/* hairline of harvest gold along the top edge */
+.glance-band::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-500) 22%, var(--gold-700) 78%, transparent);
+  opacity: 0.6;
+}
+
+.glance {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(18px, 2vw, 32px);
+  margin-top: clamp(20px, 2.2vw, 28px);
+}
+
+.glance li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 20px 24px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+/* short harvest-gold accent along the top edge of each card */
+.glance li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 34px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(90deg, var(--gold-500) 0%, var(--gold-700) 100%);
+}
+
+.glance li:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(214, 166, 72, 0.45);
+}
+
+/* Direct children only — Counter renders its number in a nested <span>, which
+   must inherit the value styling rather than pick up the label rule. */
+.glance > li > b {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 1.9vw, 1.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: var(--gold-500);
+  font-variant-numeric: tabular-nums;
+}
+
+.glance > li > span {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Pack-size chips */
+.packs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 0;
+}
+
+.packs li {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--gold-700);
+  background: rgba(214, 166, 72, 0.14);
+  border: 1px solid rgba(192, 128, 58, 0.28);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.packs-lg {
+  margin-top: 20px;
+}
+
+.packs-lg li {
+  font-size: 0.8rem;
+  padding: 6px 14px;
+}
+
+.packs .bulk {
+  color: var(--on-forest-tint);
+  background: var(--forest-tint);
+  border-color: var(--forest-tint-hi);
+}
+
+/* Variety line under a product name */
+.pcard-variety {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--forest-800);
+  margin-bottom: 10px;
+}
+
+.prow-variety {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--forest-800);
+  margin: -8px 0 16px;
+}
+
+.modal-variety {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--forest-800);
+  margin: -6px 0 14px;
+}
+
+/* Raw / steam groupings on the products page */
+.pgroup-head {
+  padding-top: clamp(34px, 4vw, 52px);
+}
+
+.pgroup-head h2 {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.pgroup-head p {
+  margin-top: 8px;
+  max-width: 62ch;
+  color: var(--ink-500);
+}
+
+/* Estimator disclaimer */
+.calc-note {
+  margin: 12px 0 0;
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: var(--ink-500);
+}
+
+/* Optional-field hint in form labels */
+.field label .opt {
+  font-weight: 500;
+  color: var(--ink-300);
+}
+
+/* Stacked lines inside a contact info row */
+.info > li p + p {
+  margin-top: 6px;
+}
+
+/* Google Maps embed */
+.map {
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background: var(--sand);
+  line-height: 0;
+}
+
+.map iframe {
+  display: block;
+  width: 100%;
+  height: clamp(300px, 42vw, 460px);
+  border: 0;
+}
+
+/* Supply states line in the footer */
+/* Small map in the footer's "Reach Us" column */
+.footer-map {
+  margin-top: 16px;
+  max-width: 340px;   /* keeps it a map, not a wide strip, when columns collapse */
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  line-height: 0;
+}
+
+.footer-map iframe {
+  display: block;
+  width: 100%;
+  height: 150px;
+  border: 0;
+}
+
+/* qualified with .fcol so it outranks the generic `.fcol a` colour and margin */
+.fcol a.footer-map-link {
+  margin-top: 12px;
+  font-weight: 600;
+  color: var(--gold-500);
+}
+
+.fcol a.footer-map-link:hover {
+  color: #FFFFFF;
+}
+
+.footer-states {
+  padding-bottom: 24px;   /* clears the footer-base divider now that the credit line is gone */
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.footer-states strong {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 1000px) {
+  .glance { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Reason cards: 4 across, then 2, then 1. Declared here, after the older
+   breakpoints, and ordered widest-first so the narrowest rule wins. */
+@media (max-width: 1100px) {
+  .reasons { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 860px) {
+  .facts { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .reasons { grid-template-columns: 1fr; }
+  .facts li { padding: 20px 18px 22px; }
+  .facts li::before { left: 18px; }
+}
+
+@media (max-width: 720px) {
+  .prow-variety { margin-top: -4px; }
+  .glance { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .glance li { padding: 18px 16px 20px; }
+  .glance li::before { left: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

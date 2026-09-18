@@ -3,8 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { products } from "@/lib/products";
 
-const DURATION = 3200;
+const DURATION = 3000; // each pack holds for 3s before the next one swaps in
 const SWAP = 600; // must match the CSS blur transition length
+
+/** "MRN Gold Black Bullet" -> "Black Bullet" — the tab row reads as the colour range. */
+const tabLabel = (name) => name.replace(/^MRN Gold\s+/, "");
 
 /**
  * Hero right-hand side: each product pack presented one at a time. On every
@@ -73,7 +76,7 @@ export default function ProductShowcase() {
         />
       </div>
 
-      <div className="stage-tabs" role="tablist" aria-label="Choose a product">
+      <div className="stage-tabs" role="tablist" aria-label="Choose a rice variety">
         {products.map((p, i) => (
           <button
             key={p.slug}
@@ -84,7 +87,7 @@ export default function ProductShowcase() {
             onClick={() => go(i)}
           >
             <span className="bar" key={`${i}-${index}`} />
-            {p.name}
+            {tabLabel(p.name)}
           </button>
         ))}
       </div>

@@ -5,18 +5,18 @@ import ScrollProgress from "@/components/ScrollProgress";
 import FloatingInquiry from "@/components/FloatingInquiry";
 
 export const metadata = {
-  metadataBase: new URL("https://mrnagro.in"),
+  metadataBase: new URL("https://mrnagro.com"),
   title: {
-    default: "MRN Agro Industries — Rice Milling & Processing, Raichur",
+    default: "MRN Agro Industries — MRN Gold Rice, Raichur",
     template: "%s | MRN Agro Industries"
   },
   description:
-    "Established 2016 in Raichur, Karnataka. MRN Agro Industries mills and processes raw rice, boiled rice, rice bran and rice husk in a modern 8 tons per hour facility, sourcing paddy directly from farmers.",
+    "Established 2003 in Raichur, Karnataka. MRN Agro Industries manufactures the MRN Gold rice range — Double Old Sona Masuri, RNR and Lachkari Kolam raw rice and Old Sona Masuri steam rice — in 5 kg, 10 kg and 26 kg packs, with bulk packaging available.",
   icons: { icon: "/logo.jpeg" },
   openGraph: {
-    title: "MRN Agro Industries — Rice Milling & Processing, Raichur",
+    title: "MRN Agro Industries — MRN Gold Rice, Raichur",
     description:
-      "Premium rice products, responsibly sourced and expertly processed in Raichur, Karnataka since 2016.",
+      "Quality rice, consistency you can count on. Premium rice for everyday meals and dependable business supply from Raichur, Karnataka since 2003.",
     type: "website"
   }
 };

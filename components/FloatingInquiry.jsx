@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { company } from "@/lib/products";
 
+/**
+ * Same no-backend approach as the full enquiry form: the message is composed
+ * into a mail draft and handed to the visitor's email client, so the drawer
+ * never claims to have sent something it has not.
+ */
 export default function FloatingInquiry() {
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
@@ -11,6 +17,13 @@ export default function FloatingInquiry() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const body = [`Name: ${name}`, `Phone: ${phone}`, "", msg].join("\n");
+    window.location.href =
+      `mailto:${company.email}` +
+      `?subject=${encodeURIComponent(`Quick enquiry from ${name || "website"}`)}` +
+      `&body=${encodeURIComponent(body)}`;
+
     setSent(true);
     setTimeout(() => {
       setSent(false);
@@ -18,7 +31,7 @@ export default function FloatingInquiry() {
       setName("");
       setPhone("");
       setMsg("");
-    }, 2500);
+    }, 4000);
   };
 
   return (
@@ -27,33 +40,36 @@ export default function FloatingInquiry() {
         <button
           className="floating-pill"
           onClick={() => setOpen(true)}
-          aria-label="Open Quick Inquiry"
+          aria-label="Open quick enquiry"
         >
           <span className="pill-pulse" />
-          <span>⚡ Quick Inquiry</span>
+          <span>Quick Enquiry</span>
         </button>
       )}
 
       {open && (
         <div className="floating-drawer">
           <div className="drawer-header">
-            <h4>Quick Inquiry &amp; Quote</h4>
-            <button className="drawer-close" onClick={() => setOpen(false)}>
+            <h4>Quick Enquiry</h4>
+            <button className="drawer-close" onClick={() => setOpen(false)} aria-label="Close">
               &times;
             </button>
           </div>
 
           {sent ? (
             <div className="drawer-success">
-              <span>✓ Message Received!</span>
-              <p>Thank you! Our Raichur team will get back to you shortly.</p>
+              <span>&#10003; Opening your email app</span>
+              <p>
+                If nothing opens, write to us at {company.email} or call our sales team on{" "}
+                {company.phones[0].number}.
+              </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="drawer-form">
               <div className="field">
                 <input
                   type="text"
-                  placeholder="Your Name / Business"
+                  placeholder="Your name or business"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -62,7 +78,7 @@ export default function FloatingInquiry() {
               <div className="field">
                 <input
                   type="tel"
-                  placeholder="Phone Number / WhatsApp"
+                  placeholder="Phone number"
                   required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
@@ -70,7 +86,7 @@ export default function FloatingInquiry() {
               </div>
               <div className="field">
                 <textarea
-                  placeholder="What product or requirement do you have?"
+                  placeholder="Which variety or quantity are you looking for?"
                   rows={3}
                   required
                   value={msg}
@@ -78,7 +94,7 @@ export default function FloatingInquiry() {
                 />
               </div>
               <button type="submit" className="btn btn-gold" style={{ width: "100%" }}>
-                Send Quick Request &rarr;
+                Send Enquiry &rarr;
               </button>
             </form>
           )}

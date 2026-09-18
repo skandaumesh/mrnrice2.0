@@ -1,5 +1,12 @@
 # MRN Agro Industries — Website Build Prompt
 
+> **⚠️ Superseded — historical reference only.**
+> This was the original build brief. Its business facts are out of date: it says established
+> 2016, 8 tons/hour, and a raw rice / boiled rice / bran / husk product range. The company was
+> established in **2003**, processes **9 tonnes of paddy per hour**, and sells the four-variety
+> **MRN Gold** range. See **[CONTENT.md](CONTENT.md)** for the approved copy the live site uses,
+> including the publisher notes on what must not be claimed.
+
 Copy everything below the line into an AI website builder, or use it as a written spec.
 
 ---

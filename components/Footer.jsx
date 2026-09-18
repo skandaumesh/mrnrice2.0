@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { products, company } from "@/lib/products";
-import { photoCredits } from "@/lib/photos";
+import { products, company, telHref } from "@/lib/products";
 
 export default function Footer() {
   return (
@@ -9,8 +8,8 @@ export default function Footer() {
         <div>
           <img className="brand-mark" src="/logo.jpeg" alt="MRN Agro Industries logo" />
           <p className="footer-tag">
-            Rice milling, processing and distribution from Raichur, Karnataka.
-            Rooted in quality since {company.established}.
+            Rice manufacturing from Raichur, Karnataka, packed under our own{" "}
+            {company.brand} brand. Built on quality since {company.established}.
           </p>
         </div>
 
@@ -23,7 +22,7 @@ export default function Footer() {
         </div>
 
         <div className="fcol">
-          <h4>Products</h4>
+          <h4>{company.brand} Range</h4>
           {products.map((p) => (
             <Link key={p.slug} href={`/products#${p.slug}`}>{p.name}</Link>
           ))}
@@ -31,15 +30,40 @@ export default function Footer() {
 
         <div className="fcol">
           <h4>Reach Us</h4>
-          <p>{company.name}<br />{company.city}, {company.state}, India</p>
+          <p>
+            {company.name}<br />
+            {company.address.line1}<br />
+            {company.address.line2}<br />
+            {company.address.line3}
+          </p>
           <a href={`mailto:${company.email}`}>{company.email}</a>
-          <a href={`tel:${company.phone.replace(/\s/g, "")}`}>{company.phone}</a>
+          {company.phones.map((p) => (
+            <a key={p.number} href={telHref(p.number)}>
+              {p.team}: {p.number}
+            </a>
+          ))}
+
+          <div className="footer-map">
+            <iframe
+              src={company.mapsEmbedUrl}
+              title={`Map showing ${company.name}, ${company.city}`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          <a
+            className="footer-map-link"
+            href={company.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get directions <span aria-hidden="true">&rarr;</span>
+          </a>
         </div>
       </div>
 
-      <p className="shell footer-credit">
-        Photographs on this site are freely-licensed images from Wikimedia Commons, used as
-        placeholders until our own photography is available &mdash; {photoCredits.join("; ")}.
+      <p className="shell footer-states">
+        <strong>Where we supply:</strong> {company.statesServed.join(" · ")}
       </p>
 
       <div className="shell footer-base">

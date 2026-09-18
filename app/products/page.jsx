@@ -4,29 +4,42 @@ import Reveal from "@/components/Reveal";
 import ProcessSteps from "@/components/ProcessSteps";
 import CTA from "@/components/CTA";
 import TiltCard from "@/components/TiltCard";
-import { products } from "@/lib/products";
+import { products, packSizes, company } from "@/lib/products";
 import { photos } from "@/lib/photos";
 
 export const metadata = {
   title: "Products",
   description:
-    "Raw rice, boiled rice, rice bran and rice husk processed at the MRN Agro Industries facility in Raichur, Karnataka for households, wholesalers, distributors and industrial buyers."
+    "The MRN Gold range from MRN Agro Industries, Raichur: Double Old Sona Masuri Raw, Double Old RNR Raw, Double Old Lachkari Kolam Raw and Old Sona Masuri Steam rice, in 5 kg, 10 kg and 26 kg packs with bulk packaging available."
 };
 
-const buyers = [
-  { title: "Households", text: "Branded retail packs for everyday kitchens." },
-  { title: "Wholesalers", text: "Bulk quantities at consistent quality and dependable timelines." },
-  { title: "Distributors", text: "Regular supply schedules that support onward distribution." },
-  { title: "Industrial buyers", text: "Bran and husk supplied in volume to processing units." }
+const groups = [
+  {
+    id: "raw",
+    label: "Raw Rice",
+    blurb: "Three Double Old raw rice varieties, for customers who cook with raw rice."
+  },
+  {
+    id: "steam",
+    label: "Steam Rice",
+    blurb: "Our Old Sona Masuri steam rice, for customers who prefer steam over raw."
+  }
+];
+
+const serves = [
+  { title: "Households", text: "5 kg and 10 kg packs sized for an everyday kitchen." },
+  { title: "Hotels", text: "Larger 26 kg packs and bulk packaging for daily kitchen volumes." },
+  { title: "Retailers", text: "Branded MRN Gold packs across all four varieties." },
+  { title: "Wholesalers & distributors", text: "Bulk packaging and supply across five states." }
 ];
 
 export default function ProductsPage() {
   return (
     <>
-      <Banner crumb="Products" title="Our products" photo={photos.raw}>
-        We offer a carefully curated range of agricultural products processed with uncompromising
-        attention to quality, ensuring they meet the diverse requirements of households,
-        wholesalers, distributors, and industrial buyers.
+      <Banner crumb="Products" title={`Meet the ${company.brand} Range`} photoSrc={photos.raw.src}>
+        Four rice varieties. One commitment to quality and consistency. Every variety is
+        available in 5 kg, 10 kg and 26 kg packs, with bulk packaging also available for
+        hotels, wholesalers and distributors.
       </Banner>
 
       {/* ---------- QUICK GRID ---------- */}
@@ -42,6 +55,7 @@ export default function ProductsPage() {
                   <div className="pcard-body">
                     <span className="pcard-no">{p.no}</span>
                     <h3>{p.name}</h3>
+                    <span className="pcard-variety">{p.variety}</span>
                     <p>{p.short}</p>
                     <span className="pcard-more">Read details <i>&rarr;</i></span>
                   </div>
@@ -52,43 +66,62 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* ---------- DETAIL ROWS ---------- */}
+      {/* ---------- DETAIL ROWS, GROUPED BY RICE TYPE ---------- */}
       <section className="section cream" style={{ paddingTop: 0 }}>
         <div className="shell">
-          {products.map((p) => (
-            <Reveal key={p.slug} as="article" className="prow" id={p.slug} style={{ scrollMarginTop: 90 }}>
-              <div className="prow-media">
-                <img src={p.image} alt={`${p.name} pack`} />
-              </div>
+          {groups.map((g) => (
+            <div key={g.id} className="pgroup">
+              <Reveal className="pgroup-head">
+                <h2>{g.label}</h2>
+                <p>{g.blurb}</p>
+              </Reveal>
 
-              <div>
-                <span className="prow-no">Product {p.no}</span>
-                <h2>{p.name}</h2>
-                <p>{p.description}</p>
-                <p className="muted">{p.note}</p>
-
-                <ul className="tags">
-                  {p.tags.map((t) => (
-                    <li key={t}>{t}</li>
-                  ))}
-                </ul>
-
-                <dl className="specs">
-                  {p.specs.map(([k, v]) => (
-                    <div key={k}>
-                      <dt>{k}</dt>
-                      <dd>{v}</dd>
+              {products
+                .filter((p) => p.category === g.id)
+                .map((p) => (
+                  <Reveal key={p.slug} as="article" className="prow" id={p.slug}>
+                    <div className="prow-media">
+                      <img src={p.image} alt={`${p.name} pack`} />
                     </div>
-                  ))}
-                </dl>
 
-                <div className="btn-row" style={{ marginTop: 24 }}>
-                  <Link href={`/contact?product=${encodeURIComponent(p.name)}`} className="btn btn-gold">
-                    Enquire about {p.name} <span className="arw">&rarr;</span>
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
+                    <div>
+                      <span className="prow-no">{p.categoryLabel} &middot; {p.no}</span>
+                      <h2>{p.name}</h2>
+                      <p className="prow-variety">{p.variety}</p>
+                      <p>{p.description}</p>
+                      <p className="muted">{p.note}</p>
+
+                      <ul className="tags">
+                        {p.features.map((f) => (
+                          <li key={f}>{f}</li>
+                        ))}
+                      </ul>
+
+                      <dl className="specs">
+                        {p.specs.map(([k, v]) => (
+                          <div key={k}>
+                            <dt>{k}</dt>
+                            <dd>{v}</dd>
+                          </div>
+                        ))}
+                      </dl>
+
+                      <ul className="packs packs-lg" aria-label="Pack sizes">
+                        {packSizes.map((kg) => (
+                          <li key={kg}>{kg} kg</li>
+                        ))}
+                        <li className="bulk">Bulk</li>
+                      </ul>
+
+                      <div className="btn-row" style={{ marginTop: 24 }}>
+                        <Link href={`/contact?product=${encodeURIComponent(p.name)}`} className="btn btn-gold">
+                          Enquire about {p.name} <span className="arw">&rarr;</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+            </div>
           ))}
         </div>
       </section>
@@ -97,10 +130,11 @@ export default function ProductsPage() {
       <section className="section dark">
         <div className="shell">
           <Reveal className="section-head">
-            <span className="eyebrow">Interactive Quality Explorer</span>
+            <span className="eyebrow">Care at every stage</span>
             <h2>Quality Process You Can Inspect</h2>
             <p>
-              Hover or click each step below to inspect precise milling and purity parameters.
+              Hover or select each step to see how paddy becomes a packed {company.brand} bag
+              at our Raichur facility.
             </p>
           </Reveal>
 
@@ -113,11 +147,11 @@ export default function ProductsPage() {
         <div className="shell">
           <Reveal className="section-head">
             <span className="eyebrow">Who we supply</span>
-            <h2>Serving every scale of requirement</h2>
+            <h2>Packed for homes and businesses alike</h2>
           </Reveal>
 
           <div className="grid g4">
-            {buyers.map((b) => (
+            {serves.map((b) => (
               <Reveal key={b.title}>
                 <TiltCard className="card" style={{ height: "100%" }}>
                   <h3>{b.title}</h3>
@@ -130,9 +164,9 @@ export default function ProductsPage() {
       </section>
 
       <CTA
-        title="Request a quote"
-        text="Tell us the product, quantity and delivery location, and our team will get back to you with pricing and availability."
-        label="Send an enquiry"
+        title="Bulk Requirements? Let's Talk."
+        text="We offer bulk packaging for hotels, wholesalers and distributors. Contact our sales team to discuss your preferred variety, packaging needs, quantity, current pricing and delivery arrangements."
+        label="Enquire about bulk orders"
       />
     </>
   );
