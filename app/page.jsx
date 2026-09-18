@@ -194,7 +194,7 @@ export default function HomePage() {
 
           <div className="btn-row" style={{ marginTop: 34 }}>
             <Link href="/contact" className="btn btn-gold">
-              Speak to our sales team <span className="arw">&rarr;</span>
+              Request a quote <span className="arw">&rarr;</span>
             </Link>
           </div>
         </div>

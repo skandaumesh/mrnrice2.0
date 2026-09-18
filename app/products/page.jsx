@@ -4,6 +4,7 @@ import Reveal from "@/components/Reveal";
 import ProcessSteps from "@/components/ProcessSteps";
 import CTA from "@/components/CTA";
 import TiltCard from "@/components/TiltCard";
+import ProductGridInteractive from "@/components/ProductGridInteractive";
 import { products, packSizes, company } from "@/lib/products";
 import { photos } from "@/lib/photos";
 
@@ -42,27 +43,12 @@ export default function ProductsPage() {
         hotels, wholesalers and distributors.
       </Banner>
 
-      {/* ---------- QUICK GRID ---------- */}
+      {/* ---------- QUICK GRID (opens the quick view & pack estimator) ---------- */}
       <section className="section">
-        <div className="shell grid g4">
-          {products.map((p) => (
-            <Reveal key={p.slug}>
-              <TiltCard className="pcard" style={{ height: "100%" }}>
-                <a href={`#${p.slug}`} style={{ display: "flex", flexDirection: "column", height: "100%", color: "inherit" }}>
-                  <div className="pcard-media">
-                    <img src={p.image} alt={`${p.name} pack`} />
-                  </div>
-                  <div className="pcard-body">
-                    <span className="pcard-no">{p.no}</span>
-                    <h3>{p.name}</h3>
-                    <span className="pcard-variety">{p.variety}</span>
-                    <p>{p.short}</p>
-                    <span className="pcard-more">Read details <i>&rarr;</i></span>
-                  </div>
-                </a>
-              </TiltCard>
-            </Reveal>
-          ))}
+        <div className="shell">
+          {/* filter tabs are hidden here: the detail rows below are already
+              grouped by raw vs steam, so they would duplicate that */}
+          <ProductGridInteractive showFilter={false} showDetailsLink />
         </div>
       </section>
 

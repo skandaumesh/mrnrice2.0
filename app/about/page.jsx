@@ -32,7 +32,7 @@ const care = [
 export default function AboutPage() {
   return (
     <>
-      <Banner crumb="About us" title="Built on Quality. Growing Through Trust." photoSrc={photos.field.src}>
+      <Banner crumb="About us" title="Built on Quality. Growing Through Trust." photoSrc={photos.hand.src}>
         A rice manufacturer from Raichur, Karnataka, producing the {company.brand} range for
         households and businesses since {company.established}.
       </Banner>

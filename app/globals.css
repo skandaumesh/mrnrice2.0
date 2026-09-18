@@ -416,6 +416,43 @@ p:last-child {
   font-weight: 700;
 }
 
+/* Email / location / phone shortcuts beside the Contact Us button.
+   Qualified with .nav so they outrank the generic `.nav a` pill styling. */
+.header-contacts {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 12px;   /* sits after the Contact Us button */
+}
+
+.nav .header-contacts a {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--forest-900);
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.nav .header-contacts a:hover {
+  color: #FFFFFF;
+  background: var(--forest-tint);
+  border-color: var(--forest-tint);
+}
+
+.header-contacts svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .nav .cta {
   margin-left: 12px;
   padding: 11px 24px;
@@ -787,14 +824,18 @@ figure.photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.45;
+  /* the ::after gradient below already darkens this; dimming the image too
+     stacked two layers and washed the photo out to a flat grey */
+  opacity: 0.72;
 }
 
+/* Heavy on the left where the heading sits, clearing towards the right so the
+   photograph is actually visible. */
 .banner::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, rgba(43, 34, 18, 0.92) 0%, rgba(43, 34, 18, 0.65) 60%, rgba(43, 34, 18, 0.35) 100%);
+  background: linear-gradient(100deg, rgba(27, 40, 20, 0.9) 0%, rgba(27, 40, 20, 0.6) 52%, rgba(27, 40, 20, 0.2) 100%);
 }
 
 .banner-inner {
@@ -1327,6 +1368,8 @@ figure.photo {
 
 .cta {
   background: var(--cream);
+  /* tighter than the standard --section-y; the panel carries its own padding */
+  padding-block: clamp(46px, 5.5vw, 78px);
 }
 
 .cta-panel {
@@ -1334,8 +1377,8 @@ figure.photo {
   overflow: hidden;
   text-align: center;
   color: #FFFFFF;
-  border-radius: clamp(22px, 3.2vw, 36px);
-  padding: clamp(52px, 7.5vw, 98px) clamp(26px, 5vw, 64px);
+  border-radius: clamp(22px, 3.2vw, 32px);
+  padding: clamp(34px, 4.4vw, 56px) clamp(24px, 4vw, 52px);
   background: radial-gradient(130% 130% at 15% 12%, #384A20 0%, var(--forest-900) 45%, var(--forest-950) 100%);
   box-shadow: var(--shadow-lg);
   border: 1px solid rgba(92, 122, 59, 0.2);
@@ -1373,8 +1416,8 @@ figure.photo {
 
 .cta-badge {
   display: inline-block;
-  margin-bottom: 20px;
-  padding: 8px 18px;
+  margin-bottom: 14px;
+  padding: 6px 15px;
   border-radius: 999px;
   font-size: 0.72rem;
   font-weight: 700;
@@ -1387,15 +1430,16 @@ figure.photo {
 
 .cta-panel h2 {
   color: #FFFFFF;
-  max-width: 22ch;
-  margin: 0 auto 18px;
+  font-size: clamp(1.45rem, 2.5vw, 2.05rem);
+  max-width: 24ch;
+  margin: 0 auto 14px;
 }
 
 .cta-panel p {
-  max-width: 54ch;
-  margin: 0 auto 32px;
+  max-width: 58ch;
+  margin: 0 auto 24px;
   color: rgba(255, 255, 255, 0.82);
-  font-size: 1.08rem;
+  font-size: 0.98rem;
 }
 
 /* Contact & Forms */
@@ -1531,43 +1575,44 @@ figure.photo {
 .footer {
   background: var(--forest-950);
   color: rgba(255, 255, 255, 0.65);
-  padding-top: clamp(50px, 6.5vw, 80px);
+  padding-top: clamp(36px, 4.2vw, 54px);
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1.3fr;
-  gap: clamp(28px, 4vw, 54px);
-  padding-bottom: 42px;
+  grid-template-columns: 1.5fr 1fr 1fr 1.4fr;
+  gap: clamp(22px, 2.8vw, 38px);
+  padding-bottom: 26px;
 }
 
 .footer .brand-mark {
-  width: 54px;
-  height: 54px;
+  width: 44px;
+  height: 44px;
   background: #FFFFFF;
   padding: 4px;
-  margin-bottom: 18px;
-  border-radius: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
 }
 
 .footer-tag {
-  font-size: 0.92rem;
-  max-width: 36ch;
+  font-size: 0.86rem;
+  max-width: 34ch;
   margin: 0;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 .fcol h4 {
-  font-size: 0.96rem;
+  font-size: 0.9rem;
   color: #FFFFFF;
-  margin-bottom: 15px;
+  margin-bottom: 11px;
   letter-spacing: -0.01em;
 }
 
 .fcol a, .fcol p {
   display: block;
-  margin: 0 0 10px;
-  font-size: 0.9rem;
+  margin: 0 0 7px;
+  font-size: 0.85rem;
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.65);
   transition: color 0.2s var(--ease);
 }
@@ -1581,9 +1626,9 @@ figure.photo {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 14px;
-  padding-block: 20px;
+  padding-block: 15px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: rgba(255, 255, 255, 0.45);
 }
 
@@ -2167,6 +2212,24 @@ figure.photo {
   border-color: var(--forest-tint-hi);
 }
 
+/* Secondary link on a product card, beneath the quick-view prompt */
+.pcard-details {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-500);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+  transition: color 0.2s var(--ease);
+}
+
+.pcard-details:hover {
+  color: var(--forest-800);
+  text-decoration-color: currentColor;
+}
+
 /* Variety line under a product name */
 .pcard-variety {
   display: block;
@@ -2249,8 +2312,8 @@ figure.photo {
 /* Supply states line in the footer */
 /* Small map in the footer's "Reach Us" column */
 .footer-map {
-  margin-top: 16px;
-  max-width: 340px;   /* keeps it a map, not a wide strip, when columns collapse */
+  margin-top: 12px;
+  max-width: 300px;   /* keeps it a map, not a wide strip, when columns collapse */
   border-radius: var(--r-sm);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -2261,7 +2324,7 @@ figure.photo {
 .footer-map iframe {
   display: block;
   width: 100%;
-  height: 150px;
+  height: 112px;
   border: 0;
 }
 
@@ -2277,9 +2340,9 @@ figure.photo {
 }
 
 .footer-states {
-  padding-bottom: 24px;   /* clears the footer-base divider now that the credit line is gone */
-  font-size: 0.85rem;
-  line-height: 1.7;
+  padding-bottom: 16px;   /* clears the footer-base divider now that the credit line is gone */
+  font-size: 0.82rem;
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.62);
 }
 
@@ -2312,6 +2375,16 @@ figure.photo {
   .prow-variety { margin-top: -4px; }
   .glance { grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .glance li { padding: 22px 12px 24px; }
+}
+
+/* In the mobile dropdown the nav is a column, so centre the icon row.
+   Declared after the 860px block so it wins there. */
+@media (max-width: 860px) {
+  .header-contacts {
+    width: 100%;
+    margin: 12px 0 0;
+    justify-content: center;
+  }
 }
 
 /* Quick-view modal — it had no breakpoints, so on a phone it kept the
