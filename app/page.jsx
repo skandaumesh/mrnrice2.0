@@ -30,7 +30,10 @@ export default function HomePage() {
         <div className="shell hero-grid">
           <div className="hero-copy">
             <p className="hero-place">Raichur, Karnataka &middot; Since {company.established}</p>
-            <h1>Quality Rice. Consistency You Can Count On.</h1>
+            <h1>
+              Quality Rice.<br />
+              Consistency You Can Count On.
+            </h1>
             <p className="lede">
               Premium rice for everyday meals and dependable business supply &mdash; since{" "}
               {company.established}.

@@ -525,14 +525,16 @@ figure.photo {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* the copy column is wider than the pack so the headline's second line
+     ("Consistency You Can Count On.") can sit on a single line */
+  grid-template-columns: 1.25fr 0.75fr;
   gap: clamp(32px, 4.8vw, 68px);
   align-items: center;
   padding-block: clamp(18px, 3vw, 36px) clamp(48px, 6.5vw, 88px);
 }
 
 .hero-copy {
-  max-width: 580px;
+  max-width: 700px;
 }
 
 .hero-place {
@@ -550,6 +552,9 @@ figure.photo {
 }
 
 .hero-copy h1 {
+  /* smaller than the global h1 so the long second line fits the column */
+  font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+  line-height: 1.12;
   margin-bottom: 22px;
 }
 
@@ -678,7 +683,9 @@ figure.photo {
   align-self: center;
   z-index: 1;
   width: auto;
-  max-width: 72%;
+  /* raised to offset the narrower pack column, so height still governs and the
+     pack renders the same size as before */
+  max-width: 78%;
   /* leaves room for the 16px packFloat travel — .hero clips with overflow:hidden */
   max-height: 88%;
   height: auto;
