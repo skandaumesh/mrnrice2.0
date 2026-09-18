@@ -44,7 +44,7 @@
 
   /* Layout & Geometry */
   --header-h: 77px;   /* 48px brand mark + 14px padding x2 + 1px border */
-  --tabs-h: 70px;   /* jump bar: 44px pill + 12px padding x2 + 1px border */
+  --tabs-h: 81px;   /* jump bar: 56px pill + 12px padding x2 + 1px border */
   --shell: 1240px;
   --gutter: clamp(20px, 5vw, 48px);
   --section-y: clamp(76px, 9vw, 136px);
@@ -2014,9 +2014,9 @@ figure.photo {
 
 /* same pill language as the product category filter */
 .section-tabs a {
-  padding: 9px 20px;
+  padding: 13px 28px;
   border-radius: 999px;
-  font-size: 0.86rem;
+  font-size: 1rem;
   font-weight: 600;
   white-space: nowrap;
   color: var(--forest-900);
@@ -2041,7 +2041,7 @@ figure.photo {
   /* wrapped rows would eat the viewport if this stayed pinned */
   .section-tabs { position: static; }
   .section-tabs ~ section[id] { scroll-margin-top: calc(var(--header-h) + 20px); }
-  .section-tabs a { padding: 8px 16px; font-size: 0.82rem; }
+  .section-tabs a { padding: 10px 18px; font-size: 0.88rem; }
   .section-tabs-inner { gap: 8px; }
 }
 
@@ -2064,7 +2064,7 @@ figure.photo {
 
 .glance {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: clamp(18px, 2vw, 32px);
   margin-top: clamp(20px, 2.2vw, 28px);
 }
@@ -2282,7 +2282,8 @@ figure.photo {
 }
 
 @media (max-width: 1000px) {
-  .glance { grid-template-columns: repeat(3, 1fr); }
+  /* four cards, so 2x2 rather than 3+1 with an orphan */
+  .glance { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* Reason cards: 4 across, then 2, then 1. Declared here, after the older

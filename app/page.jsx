@@ -15,7 +15,7 @@ import { photos } from "@/lib/photos";
 /** Jump bar under the hero — each id matches a section below. */
 const sections = [
   { id: "about", label: "About" },
-  { id: "mission", label: "Mission" },
+  { id: "mission", label: "Our Purpose" },
   { id: "products", label: "Products" },
   { id: "why-us", label: "Why us" },
   { id: "quality", label: "Quality" },
