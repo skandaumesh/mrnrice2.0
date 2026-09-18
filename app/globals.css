@@ -44,7 +44,7 @@
 
   /* Layout & Geometry */
   --header-h: 77px;   /* 48px brand mark + 14px padding x2 + 1px border */
-  --tabs-h: 81px;   /* jump bar: 56px pill + 12px padding x2 + 1px border */
+  --tabs-h: 91px;   /* jump bar: 66px pill + 12px padding x2 + 1px border */
   --shell: 1240px;
   --gutter: clamp(20px, 5vw, 48px);
   --section-y: clamp(76px, 9vw, 136px);
@@ -2009,14 +2009,14 @@ figure.photo {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 /* same pill language as the product category filter */
 .section-tabs a {
-  padding: 13px 28px;
+  padding: 16px 34px;
   border-radius: 999px;
-  font-size: 1rem;
+  font-size: 1.12rem;
   font-weight: 600;
   white-space: nowrap;
   color: var(--forest-900);
@@ -2041,8 +2041,8 @@ figure.photo {
   /* wrapped rows would eat the viewport if this stayed pinned */
   .section-tabs { position: static; }
   .section-tabs ~ section[id] { scroll-margin-top: calc(var(--header-h) + 20px); }
-  .section-tabs a { padding: 10px 18px; font-size: 0.88rem; }
-  .section-tabs-inner { gap: 8px; }
+  .section-tabs a { padding: 12px 22px; font-size: 0.95rem; }
+  .section-tabs-inner { gap: 10px; }
 }
 
 /* "At a glance" — stat ribbon sitting directly under the hero */
