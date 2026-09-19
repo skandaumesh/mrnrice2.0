@@ -960,7 +960,11 @@ figure.photo {
   aspect-ratio: 1;         /* square */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: flex-start;
+  /* centred, not space-between: the content is short, so pushing the badge
+     and the text to opposite ends of a square left a void in the middle */
+  justify-content: center;
+  gap: 16px;
   padding: 22px;
   border-radius: var(--r);
   background: var(--white);
