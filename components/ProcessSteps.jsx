@@ -3,38 +3,53 @@
 import { useState } from "react";
 import { processSteps } from "@/lib/products";
 
+const pad = (n) => String(n).padStart(2, "0");
+
+/**
+ * Quality process: a compact row of selectable steps with one detail panel.
+ *
+ * The step buttons deliberately carry only a number and a title. Showing each
+ * step's body text as well made six tall blocks that repeated what the panel
+ * below already says, which collapsed badly on narrow screens.
+ */
 export default function ProcessSteps() {
-  const [activeStep, setActiveStep] = useState(0);
-  const active = processSteps[activeStep];
+  const [active, setActive] = useState(0);
+  const step = processSteps[active];
 
   return (
-    <div className="interactive-process">
-      <ol className="journey" role="tablist" aria-label="Quality process steps">
+    <div className="process">
+      <ol className="process-steps" role="tablist" aria-label="Quality process steps">
         {processSteps.map((s, i) => (
-          <li
-            className={`jstep${i === activeStep ? " active-step" : ""}`}
-            key={s.title}
-            onClick={() => setActiveStep(i)}
-            onMouseEnter={() => setActiveStep(i)}
-            onFocus={() => setActiveStep(i)}
-            role="tab"
-            aria-selected={i === activeStep}
-            tabIndex={0}
-          >
-            <span className="jnode">{String(i + 1).padStart(2, "0")}</span>
-            <h3 className="jtitle">{s.title}</h3>
-            <p className="jtext">{s.text}</p>
+          <li key={s.title}>
+            <button
+              type="button"
+              role="tab"
+              id={`pstep-tab-${i}`}
+              aria-selected={i === active}
+              aria-controls="pstep-panel"
+              className={`pstep${i === active ? " on" : ""}`}
+              onClick={() => setActive(i)}
+            >
+              <span className="pstep-no">{pad(i + 1)}</span>
+              <span className="pstep-title">{s.title}</span>
+            </button>
           </li>
         ))}
       </ol>
 
-      {/* Interactive Details Inspector */}
-      <div className="process-inspector">
-        <div className="inspector-head">
-          <span className="eyebrow">Step {String(activeStep + 1).padStart(2, "0")} Highlights</span>
-          <h4>{active.title} &mdash; {active.metric}</h4>
-        </div>
-        <p className="inspector-body">{active.detail}</p>
+      <div
+        className="pstep-panel"
+        id="pstep-panel"
+        role="tabpanel"
+        aria-labelledby={`pstep-tab-${active}`}
+      >
+        <span className="eyebrow">
+          Step {pad(active + 1)} of {pad(processSteps.length)}
+        </span>
+        <h3>{step.title}</h3>
+        <p className="pstep-metric">{step.metric}</p>
+        <p>{step.text}</p>
+        <p className="pstep-detail">{step.detail}</p>
       </div>
     </div>
   );

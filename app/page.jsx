@@ -198,8 +198,8 @@ export default function HomePage() {
             <span className="eyebrow">Care at every stage</span>
             <h2>Quality Process You Can Inspect</h2>
             <p>
-              Hover or select each step to see how paddy becomes a packed {company.brand} bag
-              at our Raichur facility.
+              Select any step to see how paddy becomes a packed {company.brand} bag at our
+              Raichur facility.
             </p>
           </Reveal>
 
