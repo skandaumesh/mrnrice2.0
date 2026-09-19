@@ -9,7 +9,8 @@ import HeroSpotlight from "@/components/HeroSpotlight";
 import ProductGridInteractive from "@/components/ProductGridInteractive";
 import TiltCard from "@/components/TiltCard";
 import SectionTabs from "@/components/SectionTabs";
-import { reasons, appreciation, glance, company } from "@/lib/products";
+import ReasonsCarousel from "@/components/ReasonsCarousel";
+import { appreciation, glance, company } from "@/lib/products";
 import { photos } from "@/lib/photos";
 
 /** Jump bar under the hero — each id matches a section below. */
@@ -180,17 +181,7 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <ul className="reasons">
-            {reasons.map((r) => (
-              <li key={r.no}>
-                <div className="reason-head">
-                  <span className="n">{r.no}</span>
-                  <h3>{r.title}</h3>
-                </div>
-                <p>{r.text}</p>
-              </li>
-            ))}
-          </ul>
+          <ReasonsCarousel />
 
           <div className="btn-row" style={{ marginTop: 34 }}>
             <Link href="/contact" className="btn btn-gold">

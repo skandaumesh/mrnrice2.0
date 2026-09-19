@@ -925,46 +925,66 @@ figure.photo {
 .g4 { grid-template-columns: repeat(4, 1fr); }
 
 /* Reasons — Editorial list */
-.reasons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(16px, 1.8vw, 22px);
+/* Why-choose-us: a horizontal track of square cards that drifts on its own
+   and can also be dragged. Scroll snapping is deliberately left off — it
+   fights the continuous drift. */
+.rcarousel {
+  display: flex;
+  gap: clamp(14px, 1.6vw, 20px);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: auto;   /* the animation frame drives scrollLeft directly */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  padding-block: 6px;      /* room for the hover lift */
 }
 
-/* Compact scannable cards: number inline with the title, one short line under. */
-.reasons li {
+.rcarousel::-webkit-scrollbar {
+  display: none;
+}
+
+.rcarousel:active {
+  cursor: grabbing;
+}
+
+.rcarousel:focus-visible {
+  outline: 2px solid var(--forest-800);
+  outline-offset: 4px;
+  border-radius: var(--r);
+}
+
+.rcard {
+  flex: none;
+  width: clamp(196px, 20vw, 238px);
+  aspect-ratio: 1;         /* square */
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 20px;
+  justify-content: space-between;
+  padding: 22px;
+  border-radius: var(--r);
   background: var(--white);
   border: 1px solid var(--line);
-  border-radius: var(--r);
   box-shadow: var(--shadow-sm);
+  user-select: none;       /* so dragging does not select the text */
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease),
     border-color 0.3s var(--ease);
 }
 
-.reasons li:hover {
+.rcard:hover {
   transform: translateY(-5px);
   border-color: rgba(92, 122, 59, 0.3);
   box-shadow: var(--shadow);
 }
 
-.reason-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.reasons .n {
+.rcard .n {
   font-family: var(--serif);
   font-size: 0.8rem;
   font-weight: 800;
   color: #FFFFFF;
   background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-700) 100%);
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -972,15 +992,15 @@ figure.photo {
   box-shadow: 0 5px 12px -5px rgba(192, 128, 58, 0.7);
 }
 
-.reasons h3 {
+.rcard h3 {
   font-size: 1rem;
   line-height: 1.25;
-  margin: 0;
+  margin: 0 0 8px;
 }
 
-.reasons p {
+.rcard p {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 0.87rem;
   line-height: 1.5;
   color: var(--ink-500);
 }
@@ -2356,19 +2376,13 @@ figure.photo {
   .glance { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Reason cards: 4 across, then 2, then 1. Declared here, after the older
-   breakpoints, and ordered widest-first so the narrowest rule wins. */
-@media (max-width: 1100px) {
-  .reasons { grid-template-columns: repeat(2, 1fr); }
-}
-
 @media (max-width: 860px) {
   .facts { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 560px) {
-  .reasons { grid-template-columns: 1fr; }
   .facts li { padding: 22px 14px 24px; }
+  .rcard { width: clamp(180px, 62vw, 210px); padding: 18px; }
 }
 
 @media (max-width: 720px) {
