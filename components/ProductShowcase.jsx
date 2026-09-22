@@ -52,7 +52,11 @@ export default function ProductShowcase() {
       className="stage"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
+      /* keyboard focus only — a click also fires focus, and focus then stays
+         on the tab, which would stop the rotation permanently */
+      onFocus={(e) => {
+        if (e.target.matches?.(":focus-visible")) setPaused(true);
+      }}
       onBlur={() => setPaused(false)}
     >
       <div className="stage-canvas">

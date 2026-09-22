@@ -41,7 +41,11 @@ export default function ProcessSteps() {
       className="qp"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
+      /* Only keyboard focus pauses. A plain click also fires focus, and since
+         focus then stays on that button the rail would freeze for good. */
+      onFocus={(e) => {
+        if (e.target.matches?.(":focus-visible")) setPaused(true);
+      }}
       onBlur={() => setPaused(false)}
     >
       <ol

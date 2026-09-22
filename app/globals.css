@@ -3,43 +3,49 @@
    Color Palette: Organic Agriculture — Olive, Kraft & Wheat
    ========================================================= */
 
+/* Palette follows mrnrice1.vercel.app: a true-green scale on white, rather
+   than the previous olive-and-harvest-gold. Note the --gold-* slots are a
+   green ramp there too — the names are kept so every existing rule still
+   resolves, but nothing in this palette is actually gold. */
 :root {
-  /* Brand Green Core — natural olive & leaf */
-  --forest-950: #1B2814;   /* Deep olive-forest (dark sections / footer) */
-  --forest-900: #2C3D1E;   /* Forest heading green */
-  --forest-800: #5C7A3B;   /* Olive-leaf primary accent */
-  --forest-700: #4A6530;   /* Deeper leaf hover */
+  /* Green core */
+  --forest-950: #0F3B24;   /* Deep green (dark sections / footer) */
+  --forest-900: #123A24;   /* Heading green */
+  --forest-800: #1C7A45;   /* Primary accent */
+  --forest-700: #166B3C;   /* Deeper hover */
+  --forest-100: #E6F3EA;   /* Pale green tint */
+
   /* Tint surface — dark green. Anything sitting on it uses --on-forest-tint. */
-  --forest-tint: #25341B;      /* Chip / icon / pill surface (was a light sage) */
-  --forest-tint-hi: #334724;   /* Lifted edge + hover for the tint */
-  --on-forest-tint: #E4EDD3;   /* Text and icons on the dark tint */
+  --forest-tint: #123A24;      /* Chip / icon / pill surface */
+  --forest-tint-hi: #1C5233;   /* Lifted edge + hover for the tint */
+  --on-forest-tint: #E6F3EA;   /* Text and icons on the dark tint */
 
-  /* Harvest — terracotta, wheat & straw */
-  --gold-700: #A65E2C;    /* Terracotta / deep harvest */
-  --gold-600: #C0803A;    /* Wheat amber accent */
-  --gold-500: #D6A648;    /* Sunlit straw gold */
-  --gold-100: #F2E7CD;    /* Soft cream */
+  /* Accent ramp (historically "gold", now green) */
+  --gold-700: #15683A;
+  --gold-600: #1E8E4E;
+  --gold-500: #2BA862;   /* brightest — the one that reads on dark sections */
+  --gold-100: #E7F3EB;
 
-  /* Natural accent tints (kept under the old names) */
-  --emerald-glow: #44602B;   /* Deep leaf green */
-  --amber-glow: #C99A3E;     /* Warm wheat */
+  --emerald-glow: #1E8E4E;
+  --amber-glow: #2BA862;
 
-  /* Ink — warm earth, not cool slate */
-  --ink-900: #29261E;
-  --ink-700: #464233;
-  --ink-500: #6E6754;
-  --ink-300: #9C937C;
+  /* Ink */
+  --ink-900: #1A1F19;
+  --ink-700: #3C4339;
+  --ink-500: #69705F;
+  --ink-300: #9AA091;
 
-  /* Surfaces & Lines — kraft paper & cream */
-  --line: #E5DDC9;
-  --line-soft: #F0EAD9;
-  --sand: #EDE4CE;
-  --cream: #F5EFDF;
-  --paper: #FBF7EB;
+  /* Surfaces & lines */
+  --line: #E8EAE5;
+  --line-soft: #F0F2ED;
+  --sand: #EEF4EF;
+  --cream: #F4F9F5;
+  --paper: #FFFFFF;
   --white: #FFFFFF;
 
-  /* Typography */
-  --serif: "Fraunces", "Iowan Old Style", Georgia, serif;
+  /* Typography — Poppins carries the headings; the --serif name is kept so
+     existing rules resolve, but it is a geometric sans. */
+  --serif: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* Layout & Geometry */
@@ -51,10 +57,9 @@
   --r: 20px;
   --r-sm: 12px;
 
-  /* Soft, warm earth shadows (no synthetic glow) */
-  --shadow: 0 20px 45px -18px rgba(43, 34, 18, 0.18), 0 8px 22px -10px rgba(92, 72, 40, 0.10);
-  --shadow-sm: 0 10px 24px -12px rgba(43, 34, 18, 0.12);
-  --shadow-lg: 0 30px 60px -20px rgba(43, 34, 18, 0.30), 0 0 40px -14px rgba(127, 164, 92, 0.16);
+  --shadow: 0 14px 40px -22px rgba(15, 59, 36, 0.28);
+  --shadow-sm: 0 6px 20px -14px rgba(15, 59, 36, 0.25);
+  --shadow-lg: 0 28px 60px -24px rgba(15, 59, 36, 0.38);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -115,7 +120,7 @@ ul, ol {
 }
 
 ::selection {
-  background: rgba(92, 122, 59, 0.2);
+  background: rgba(28, 122, 69, 0.2);
   color: var(--forest-950);
 }
 
@@ -137,16 +142,18 @@ ul, ol {
 }
 
 .section.dark {
-  background: radial-gradient(110% 110% at 50% 0%, #26361B 0%, var(--forest-950) 100%);
+  background: radial-gradient(110% 110% at 50% 0%, #17603A 0%, var(--forest-950) 100%);
   color: rgba(255, 255, 255, 0.85);
 }
 
 /* Typography Hierarchy */
+/* -0.035em was tuned for Fraunces; a geometric sans needs far less negative
+   tracking before it starts to look cramped. */
 h1, h2, h3, h4 {
   font-family: var(--serif);
   color: var(--ink-900);
   font-weight: 700;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
   margin: 0;
 }
 
@@ -188,18 +195,22 @@ p:last-child {
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gold-600);
+  /* the darker green: at 0.76rem this is small text, and gold-600 on the pale
+     pill only reaches 3.7:1 */
+  color: var(--gold-700);
   background: var(--gold-100);
   padding: 5px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(192, 128, 58, 0.25);
+  border: 1px solid rgba(30, 142, 78, 0.25);
   margin: 0 0 16px;
 }
 
+/* pale green rather than the accent green: this is small bold text, and the
+   accent only clears 4.1:1 on the dark panel, which is a large-text score */
 .dark .eyebrow {
-  color: var(--gold-500);
-  background: rgba(192, 128, 58, 0.12);
-  border-color: rgba(192, 128, 58, 0.3);
+  color: var(--forest-100);
+  background: rgba(30, 142, 78, 0.16);
+  border-color: rgba(43, 168, 98, 0.4);
 }
 
 .lede {
@@ -244,7 +255,7 @@ p:last-child {
   background: linear-gradient(135deg, var(--emerald-glow) 0%, var(--forest-950) 100%);
   color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 24px -8px rgba(27, 40, 20, 0.45);
+  box-shadow: 0 10px 24px -8px rgba(15, 59, 36, 0.45);
   transition: all 0.3s var(--ease);
   position: relative;
   overflow: hidden;
@@ -261,7 +272,7 @@ p:last-child {
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 32px -8px rgba(27, 40, 20, 0.5);
+  box-shadow: 0 16px 32px -8px rgba(15, 59, 36, 0.5);
 }
 
 .btn:hover::before {
@@ -280,11 +291,11 @@ p:last-child {
   background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-700) 100%);
   color: #FFFFFF;
   border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 10px 24px -8px rgba(192, 128, 58, 0.45);
+  box-shadow: 0 10px 24px -8px rgba(30, 142, 78, 0.45);
 }
 
 .btn-gold:hover {
-  box-shadow: 0 16px 32px -8px rgba(192, 128, 58, 0.55);
+  box-shadow: 0 16px 32px -8px rgba(30, 142, 78, 0.55);
 }
 
 .btn-outline {
@@ -329,13 +340,13 @@ p:last-child {
   z-index: 300;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(229, 221, 201, 0.6);
+  border-bottom: 1px solid rgba(232, 234, 229, 0.6);
   transition: all 0.3s var(--ease);
 }
 
 .header.stuck {
   background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 10px 30px -10px rgba(43, 34, 18, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(15, 59, 36, 0.08);
   border-bottom-color: var(--line);
 }
 
@@ -358,7 +369,7 @@ p:last-child {
   height: 48px;
   flex: none;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(43, 34, 18, 0.1);
+  box-shadow: 0 4px 12px rgba(15, 59, 36, 0.1);
   object-fit: cover;
   transition: transform 0.3s var(--ease);
 }
@@ -375,10 +386,10 @@ p:last-child {
 
 .brand-type strong {
   font-family: var(--serif);
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--ink-900);
-  letter-spacing: -0.02em;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--forest-950);
+  letter-spacing: -0.01em;
 }
 
 .brand-type span {
@@ -459,7 +470,7 @@ p:last-child {
   background: linear-gradient(135deg, var(--forest-900) 0%, var(--forest-950) 100%);
   color: #FFFFFF;
   border-radius: 999px;
-  box-shadow: 0 6px 18px -4px rgba(43, 34, 18, 0.3);
+  box-shadow: 0 6px 18px -4px rgba(15, 59, 36, 0.3);
 }
 
 .nav .cta:hover {
@@ -529,7 +540,7 @@ figure.photo {
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
-  background: radial-gradient(85% 85% at 75% 20%, #EFE8D4 0%, #F5EFDF 55%, #FBF7EB 100%);
+  background: radial-gradient(85% 85% at 75% 20%, #EAF4EE 0%, #F4F9F5 55%, #FFFFFF 100%);
 }
 
 .hero::before, .hero::after {
@@ -545,7 +556,7 @@ figure.photo {
   aspect-ratio: 1;
   top: -20%;
   right: -5%;
-  background: radial-gradient(circle, rgba(92, 122, 59, 0.22) 0%, rgba(192, 128, 58, 0.08) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(28, 122, 69, 0.22) 0%, rgba(30, 142, 78, 0.08) 50%, transparent 70%);
   filter: blur(40px);
 }
 
@@ -554,7 +565,7 @@ figure.photo {
   aspect-ratio: 1;
   bottom: -25%;
   left: -8%;
-  background: radial-gradient(circle, rgba(192, 128, 58, 0.16) 0%, rgba(92, 122, 59, 0.1) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(30, 142, 78, 0.16) 0%, rgba(28, 122, 69, 0.1) 50%, transparent 70%);
   filter: blur(40px);
 }
 
@@ -582,10 +593,10 @@ figure.photo {
   font-weight: 700;
   margin: 0 0 18px;
   display: inline-block;
-  background: rgba(192, 128, 58, 0.12);
+  background: rgba(30, 142, 78, 0.12);
   padding: 4px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(192, 128, 58, 0.25);
+  border: 1px solid rgba(30, 142, 78, 0.25);
 }
 
 .hero-copy h1 {
@@ -640,7 +651,7 @@ figure.photo {
 
 .facts li:hover {
   transform: translateY(-4px);
-  border-color: rgba(92, 122, 59, 0.3);
+  border-color: rgba(28, 122, 69, 0.3);
   box-shadow: var(--shadow);
 }
 
@@ -651,7 +662,7 @@ figure.photo {
   font-size: clamp(1.7rem, 2.5vw, 2.4rem);
   font-weight: 800;
   line-height: 1.1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: var(--forest-900);
   font-variant-numeric: tabular-nums;
 }
@@ -695,14 +706,14 @@ figure.photo {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle at 35% 30%, #3E5528 0%, #24331A 45%, #16210F 100%);
-  box-shadow: 0 25px 65px -20px rgba(22, 33, 15, 0.5);
+  background: radial-gradient(circle at 35% 30%, #1C7A45 0%, #123A24 45%, #0F3B24 100%);
+  box-shadow: 0 25px 65px -20px rgba(15, 59, 36, 0.5);
   animation: pulseGlow 6s ease-in-out infinite alternate;
 }
 
 @keyframes pulseGlow {
-  0% { transform: translate(-50%, -50%) scale(0.96); box-shadow: 0 25px 65px -20px rgba(22, 33, 15, 0.42); }
-  100% { transform: translate(-50%, -50%) scale(1.04); box-shadow: 0 35px 85px -15px rgba(192, 128, 58, 0.45); }
+  0% { transform: translate(-50%, -50%) scale(0.96); box-shadow: 0 25px 65px -20px rgba(15, 59, 36, 0.42); }
+  100% { transform: translate(-50%, -50%) scale(1.04); box-shadow: 0 35px 85px -15px rgba(30, 142, 78, 0.45); }
 }
 
 .stage-shadow {
@@ -712,7 +723,7 @@ figure.photo {
   width: 46%;
   height: 24px;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse at center, rgba(43, 34, 18, 0.30), transparent 68%);
+  background: radial-gradient(ellipse at center, rgba(15, 59, 36, 0.30), transparent 68%);
   filter: blur(5px);
   z-index: 0;
   animation: shadowPulse 4.2s ease-in-out 0.6s infinite;
@@ -743,14 +754,14 @@ figure.photo {
 }
 
 @keyframes packBlurIn {
-  0% { opacity: 0; transform: translateX(150px) scaleX(1.3); filter: drop-shadow(0 30px 30px rgba(43, 34, 18, 0.25)) blur(24px); }
-  45% { opacity: 1; filter: drop-shadow(0 30px 30px rgba(43, 34, 18, 0.25)) blur(8px); }
-  100% { opacity: 1; transform: translateX(0) scaleX(1); filter: drop-shadow(0 30px 30px rgba(43, 34, 18, 0.25)) blur(0); }
+  0% { opacity: 0; transform: translateX(150px) scaleX(1.3); filter: drop-shadow(0 30px 30px rgba(15, 59, 36, 0.25)) blur(24px); }
+  45% { opacity: 1; filter: drop-shadow(0 30px 30px rgba(15, 59, 36, 0.25)) blur(8px); }
+  100% { opacity: 1; transform: translateX(0) scaleX(1); filter: drop-shadow(0 30px 30px rgba(15, 59, 36, 0.25)) blur(0); }
 }
 
 @keyframes packBlurOut {
-  0% { opacity: 1; transform: translateX(0) scaleX(1); filter: drop-shadow(0 30px 30px rgba(43, 34, 18, 0.25)) blur(0); }
-  100% { opacity: 0; transform: translateX(-150px) scaleX(1.3); filter: drop-shadow(0 30px 30px rgba(43, 34, 18, 0.25)) blur(24px); }
+  0% { opacity: 1; transform: translateX(0) scaleX(1); filter: drop-shadow(0 30px 30px rgba(15, 59, 36, 0.25)) blur(0); }
+  100% { opacity: 0; transform: translateX(-150px) scaleX(1.3); filter: drop-shadow(0 30px 30px rgba(15, 59, 36, 0.25)) blur(24px); }
 }
 
 @keyframes packFloat {
@@ -835,7 +846,7 @@ figure.photo {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, rgba(27, 40, 20, 0.9) 0%, rgba(27, 40, 20, 0.6) 52%, rgba(27, 40, 20, 0.2) 100%);
+  background: linear-gradient(100deg, rgba(15, 59, 36, 0.9) 0%, rgba(15, 59, 36, 0.6) 52%, rgba(15, 59, 36, 0.2) 100%);
 }
 
 .banner-inner {
@@ -911,7 +922,7 @@ figure.photo {
   width: 22px;
   height: 22px;
   margin-top: 2px;
-  background: var(--forest-tint) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M5 10.5l3.2 3.2L15 7' fill='none' stroke='%23E4EDD3' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/15px no-repeat;
+  background: var(--forest-tint) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M5 10.5l3.2 3.2L15 7' fill='none' stroke='%23E6F3EA' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/15px no-repeat;
   border-radius: 50%;
 }
 
@@ -977,7 +988,7 @@ figure.photo {
 
 .rcard:hover {
   transform: translateY(-5px);
-  border-color: rgba(92, 122, 59, 0.3);
+  border-color: rgba(28, 122, 69, 0.3);
   box-shadow: var(--shadow);
 }
 
@@ -993,7 +1004,7 @@ figure.photo {
   display: grid;
   place-items: center;
   flex: none;
-  box-shadow: 0 5px 12px -5px rgba(192, 128, 58, 0.7);
+  box-shadow: 0 5px 12px -5px rgba(30, 142, 78, 0.7);
 }
 
 .rcard h3 {
@@ -1021,7 +1032,7 @@ figure.photo {
 
 .card:hover {
   transform: translateY(-5px);
-  border-color: rgba(92, 122, 59, 0.3);
+  border-color: rgba(28, 122, 69, 0.3);
   box-shadow: var(--shadow);
 }
 
@@ -1049,8 +1060,8 @@ figure.photo {
 }
 
 .mv.dark {
-  background: linear-gradient(145deg, #0C2B23 0%, var(--forest-950) 100%);
-  border-color: rgba(92, 122, 59, 0.2);
+  background: linear-gradient(145deg, #123A24 0%, var(--forest-950) 100%);
+  border-color: rgba(28, 122, 69, 0.2);
   color: rgba(255, 255, 255, 0.82);
 }
 
@@ -1082,7 +1093,7 @@ figure.photo {
 
 .pcard:hover {
   transform: translateY(-6px);
-  border-color: rgba(92, 122, 59, 0.35);
+  border-color: rgba(28, 122, 69, 0.35);
   box-shadow: var(--shadow);
 }
 
@@ -1100,7 +1111,7 @@ figure.photo {
   justify-content: center;
   overflow: hidden;
   padding: 14px;
-  background: radial-gradient(circle at 50% 50%, #F3EEDE 0%, #E9E1C9 100%);
+  background: radial-gradient(circle at 50% 50%, #F4F9F5 0%, #E3EFE7 100%);
 }
 
 .pcard-media img {
@@ -1176,8 +1187,8 @@ figure.photo {
 }
 
 .prow-media {
-  background: radial-gradient(circle at 50% 45%, #334724 0%, var(--forest-950) 100%);
-  border: 1px solid rgba(22, 33, 15, 0.35);
+  background: radial-gradient(circle at 50% 45%, #1C5233 0%, var(--forest-950) 100%);
+  border: 1px solid rgba(15, 59, 36, 0.35);
   border-radius: var(--r);
   box-shadow: var(--shadow-sm);
   display: flex;
@@ -1325,7 +1336,7 @@ figure.photo {
 }
 
 .qp-step:hover .qp-dot {
-  border-color: rgba(214, 166, 72, 0.7);
+  border-color: rgba(43, 168, 98, 0.7);
   color: #FFFFFF;
 }
 
@@ -1340,7 +1351,7 @@ figure.photo {
   background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-700) 100%);
   border-color: #FFFFFF;
   transform: scale(1.1);
-  box-shadow: 0 0 0 7px rgba(192, 128, 58, 0.16), 0 10px 22px -8px rgba(192, 128, 58, 0.8);
+  box-shadow: 0 0 0 7px rgba(30, 142, 78, 0.16), 0 10px 22px -8px rgba(30, 142, 78, 0.8);
 }
 
 .qp-label {
@@ -1420,9 +1431,9 @@ figure.photo {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gold-500);
-  background: rgba(192, 128, 58, 0.14);
-  border: 1px solid rgba(192, 128, 58, 0.34);
+  color: var(--forest-100);   /* small bold text on a dark panel — see .dark .eyebrow */
+  background: rgba(30, 142, 78, 0.2);
+  border: 1px solid rgba(43, 168, 98, 0.4);
 }
 
 .qp-panel h3 {
@@ -1461,7 +1472,7 @@ figure.photo {
 .tcard:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow);
-  border-color: rgba(92, 122, 59, 0.25);
+  border-color: rgba(28, 122, 69, 0.25);
 }
 
 .tcard blockquote {
@@ -1528,9 +1539,9 @@ figure.photo {
   color: #FFFFFF;
   border-radius: clamp(22px, 3.2vw, 32px);
   padding: clamp(34px, 4.4vw, 56px) clamp(24px, 4vw, 52px);
-  background: radial-gradient(130% 130% at 15% 12%, #384A20 0%, var(--forest-900) 45%, var(--forest-950) 100%);
+  background: radial-gradient(130% 130% at 15% 12%, #1C7A45 0%, var(--forest-900) 45%, var(--forest-950) 100%);
   box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(92, 122, 59, 0.2);
+  border: 1px solid rgba(28, 122, 69, 0.2);
 }
 
 .cta-panel::before, .cta-panel::after {
@@ -1545,7 +1556,7 @@ figure.photo {
   aspect-ratio: 1;
   top: -30%;
   right: -6%;
-  background: radial-gradient(circle, rgba(92, 122, 59, 0.35) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(28, 122, 69, 0.35) 0%, transparent 68%);
   filter: blur(30px);
 }
 
@@ -1554,7 +1565,7 @@ figure.photo {
   aspect-ratio: 1;
   bottom: -34%;
   left: -6%;
-  background: radial-gradient(circle, rgba(192, 128, 58, 0.25) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(30, 142, 78, 0.25) 0%, transparent 68%);
   filter: blur(30px);
 }
 
@@ -1573,8 +1584,8 @@ figure.photo {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold-500);
-  background: rgba(192, 128, 58, 0.12);
-  border: 1px solid rgba(192, 128, 58, 0.3);
+  background: rgba(30, 142, 78, 0.12);
+  border: 1px solid rgba(30, 142, 78, 0.3);
 }
 
 .cta-panel h2 {
@@ -1689,7 +1700,7 @@ figure.photo {
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none;
   border-color: var(--emerald-glow);
-  box-shadow: 0 0 0 4px rgba(92, 122, 59, 0.18);
+  box-shadow: 0 0 0 4px rgba(28, 122, 69, 0.18);
 }
 
 .field textarea {
@@ -1819,14 +1830,14 @@ figure.photo {
 .filter-tab:hover {
   background: var(--sand);
   color: var(--forest-900);
-  border-color: rgba(92, 122, 59, 0.3);
+  border-color: rgba(28, 122, 69, 0.3);
 }
 
 .filter-tab.active {
   background: linear-gradient(135deg, var(--forest-900) 0%, var(--forest-950) 100%);
   color: #FFFFFF;
   border-color: var(--forest-900);
-  box-shadow: 0 6px 18px -4px rgba(43, 34, 18, 0.3);
+  box-shadow: 0 6px 18px -4px rgba(15, 59, 36, 0.3);
 }
 
 /* Quick View Product Modal */
@@ -1834,7 +1845,7 @@ figure.photo {
   position: fixed;
   inset: 0;
   z-index: 999;
-  background: rgba(43, 34, 18, 0.7);
+  background: rgba(15, 59, 36, 0.7);
   backdrop-filter: blur(8px);
   display: grid;
   place-items: center;
@@ -1846,7 +1857,7 @@ figure.photo {
   position: relative;
   background: var(--paper);
   border-radius: var(--r);
-  border: 1px solid rgba(92, 122, 59, 0.25);
+  border: 1px solid rgba(28, 122, 69, 0.25);
   box-shadow: var(--shadow-lg);
   max-width: 860px;
   width: 100%;
@@ -1886,7 +1897,7 @@ figure.photo {
 
 .modal-media {
   position: relative;
-  background: radial-gradient(circle at 50% 45%, #334724 0%, var(--forest-950) 100%);
+  background: radial-gradient(circle at 50% 45%, #1C5233 0%, var(--forest-950) 100%);
   border-radius: var(--r-sm);
   padding: 16px;
   aspect-ratio: 4/4.5;
@@ -1895,7 +1906,7 @@ figure.photo {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border: 1px solid rgba(22, 33, 15, 0.35);
+  border: 1px solid rgba(15, 59, 36, 0.35);
 }
 
 .modal-media img {
@@ -1928,7 +1939,7 @@ figure.photo {
 .calc-box {
   margin-top: 20px;
   background: var(--sand);
-  border: 1px solid rgba(92, 122, 59, 0.25);
+  border: 1px solid rgba(28, 122, 69, 0.25);
   border-radius: var(--r-sm);
   padding: 18px;
 }
@@ -1967,7 +1978,7 @@ figure.photo {
   gap: 16px;
   margin-top: 14px;
   padding-top: 12px;
-  border-top: 1px solid rgba(92, 122, 59, 0.2);
+  border-top: 1px solid rgba(28, 122, 69, 0.2);
 }
 
 .calc-results div {
@@ -2014,13 +2025,13 @@ figure.photo {
   color: #FFFFFF;
   font-weight: 700;
   font-size: 0.88rem;
-  box-shadow: 0 12px 30px -6px rgba(192, 128, 58, 0.5);
+  box-shadow: 0 12px 30px -6px rgba(30, 142, 78, 0.5);
   transition: all 0.3s var(--ease);
 }
 
 .floating-pill:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 16px 36px -4px rgba(192, 128, 58, 0.65);
+  box-shadow: 0 16px 36px -4px rgba(30, 142, 78, 0.65);
 }
 
 .pill-pulse {
@@ -2041,7 +2052,7 @@ figure.photo {
 .floating-drawer {
   width: min(360px, 90vw);
   background: var(--paper);
-  border: 1px solid rgba(92, 122, 59, 0.3);
+  border: 1px solid rgba(28, 122, 69, 0.3);
   border-radius: var(--r);
   box-shadow: var(--shadow-lg);
   padding: 22px;
@@ -2172,7 +2183,7 @@ figure.photo {
   top: var(--header-h);
   z-index: 250;                 /* under the header (300), over page content */
   padding-block: 12px;
-  background: rgba(251, 247, 235, 0.92);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
@@ -2199,14 +2210,14 @@ figure.photo {
 
 .section-tabs a:hover {
   background: var(--sand);
-  border-color: rgba(92, 122, 59, 0.4);
+  border-color: rgba(28, 122, 69, 0.4);
 }
 
 .section-tabs a.on {
   color: #FFFFFF;
   background: linear-gradient(135deg, var(--forest-900) 0%, var(--forest-950) 100%);
   border-color: var(--forest-900);
-  box-shadow: 0 6px 18px -4px rgba(43, 34, 18, 0.3);
+  box-shadow: 0 6px 18px -4px rgba(15, 59, 36, 0.3);
 }
 
 @media (max-width: 720px) {
@@ -2220,7 +2231,7 @@ figure.photo {
 /* "At a glance" — stat ribbon sitting directly under the hero */
 .glance-band {
   position: relative;
-  background: linear-gradient(135deg, #26361B 0%, var(--forest-950) 100%);
+  background: linear-gradient(135deg, #17603A 0%, var(--forest-950) 100%);
   padding-block: clamp(30px, 3.6vw, 48px);
 }
 
@@ -2272,7 +2283,7 @@ figure.photo {
 .glance li:hover {
   transform: translateY(-4px);
   background: rgba(255, 255, 255, 0.075);
-  border-color: rgba(214, 166, 72, 0.45);
+  border-color: rgba(43, 168, 98, 0.45);
 }
 
 /* Direct children only — Counter renders its number in a nested <span>, which
@@ -2283,7 +2294,7 @@ figure.photo {
   font-size: clamp(1.75rem, 2.6vw, 2.5rem);
   font-weight: 800;
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   white-space: nowrap;
   color: var(--gold-500);
   font-variant-numeric: tabular-nums;
@@ -2311,8 +2322,8 @@ figure.photo {
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--gold-700);
-  background: rgba(214, 166, 72, 0.14);
-  border: 1px solid rgba(192, 128, 58, 0.28);
+  background: rgba(43, 168, 98, 0.14);
+  border: 1px solid rgba(30, 142, 78, 0.28);
   padding: 4px 10px;
   border-radius: 999px;
 }
