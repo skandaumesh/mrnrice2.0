@@ -2277,7 +2277,9 @@ figure.photo {
   width: 38px;
   height: 3px;
   border-radius: 0 0 3px 3px;
-  background: linear-gradient(90deg, var(--gold-500) 0%, var(--gold-700) 100%);
+  /* runs pale -> accent rather than accent -> dark: the dark end of the ramp
+     vanished against this band */
+  background: linear-gradient(90deg, var(--forest-100) 0%, var(--gold-500) 100%);
 }
 
 .glance li:hover {
@@ -2296,7 +2298,10 @@ figure.photo {
   line-height: 1.05;
   letter-spacing: -0.02em;
   white-space: nowrap;
-  color: var(--gold-500);
+  /* white, not the accent: the accent green on this dark green band is only
+     4.1:1 and reads as green-on-green. Hierarchy comes from size and weight
+     against the muted label below. */
+  color: #FFFFFF;
   font-variant-numeric: tabular-nums;
 }
 
