@@ -119,8 +119,8 @@ export default function ProductsPage() {
             <span className="eyebrow">Care at every stage</span>
             <h2>Quality Process You Can Inspect</h2>
             <p>
-              Watch it run, or pick any step, to see how paddy becomes a packed{" "}
-              {company.brand} bag at our Raichur facility.
+              Six stages, from the paddy we select to the packed {company.brand} bag leaving
+              our Raichur facility.
             </p>
           </Reveal>
 
