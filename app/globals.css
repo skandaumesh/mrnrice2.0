@@ -695,25 +695,31 @@ figure.photo {
   height: clamp(440px, 46vw, 580px);
 }
 
-/* Vibrant glowing stage backdrop ring */
-.stage-canvas::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  width: min(440px, 86%);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle at 35% 30%, #1C7A45 0%, #123A24 45%, #0F3B24 100%);
-  box-shadow: 0 25px 65px -20px rgba(15, 59, 36, 0.5);
-  animation: pulseGlow 6s ease-in-out infinite alternate;
+/* Accent glow that tracks the cursor across the whole hero. Painted on an
+   overlay so it never intercepts clicks, and sits below .hero-grid, which
+   already carries z-index 1. */
+.hero-spotlight-wrapper {
+  position: relative;
 }
 
-@keyframes pulseGlow {
-  0% { transform: translate(-50%, -50%) scale(0.96); box-shadow: 0 25px 65px -20px rgba(15, 59, 36, 0.42); }
-  100% { transform: translate(-50%, -50%) scale(1.04); box-shadow: 0 35px 85px -15px rgba(30, 142, 78, 0.45); }
+.hero-spotlight-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  background: radial-gradient(
+    460px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(43, 168, 98, 0.22) 0%,
+    rgba(43, 168, 98, 0.08) 38%,
+    transparent 70%
+  );
+}
+
+.hero-spotlight-wrapper.lit::after {
+  opacity: 1;
 }
 
 .stage-shadow {
@@ -1206,8 +1212,8 @@ figure.photo {
 }
 
 .prow-media {
-  background: radial-gradient(circle at 50% 45%, #1C5233 0%, var(--forest-950) 100%);
-  border: 1px solid rgba(15, 59, 36, 0.35);
+  background: radial-gradient(circle at 50% 50%, #F4F9F5 0%, #E3EFE7 100%);
+  border: 1px solid var(--line);
   border-radius: var(--r);
   box-shadow: var(--shadow-sm);
   display: flex;
@@ -1825,7 +1831,7 @@ figure.photo {
 
 .modal-media {
   position: relative;
-  background: radial-gradient(circle at 50% 45%, #1C5233 0%, var(--forest-950) 100%);
+  background: radial-gradient(circle at 50% 50%, #F4F9F5 0%, #E3EFE7 100%);
   border-radius: var(--r-sm);
   padding: 16px;
   aspect-ratio: 4/4.5;
@@ -1834,7 +1840,7 @@ figure.photo {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border: 1px solid rgba(15, 59, 36, 0.35);
+  border: 1px solid var(--line);
 }
 
 .modal-media img {
@@ -2037,7 +2043,6 @@ figure.photo {
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .hero-copy { max-width: none; }
   .stage-canvas { height: clamp(390px, 72vw, 520px); }
-  .stage-canvas::before { width: min(410px, 78%); }
   .stage-pack { max-width: 68%; max-height: 90%; }
   .g4 { grid-template-columns: repeat(2, 1fr); }
   .promise { grid-template-columns: 1fr; }
