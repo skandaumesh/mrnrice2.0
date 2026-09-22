@@ -18,8 +18,30 @@ export default function ProductShowcase() {
   const [index, setIndex] = useState(0);
   const [prev, setPrev] = useState(null);
   const [paused, setPaused] = useState(false);
+  const [tilt, setTilt] = useState({ x: 0, y: 0, on: false });
+  const [allowTilt, setAllowTilt] = useState(false);
   const idxRef = useRef(0);
   const timer = useRef(null);
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    setAllowTilt(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+
+  /* Cursor-following 3D tilt, the same idiom as TiltCard on the product cards.
+     It sits on a wrapper rather than the pack itself: the pack already owns
+     its transform via the float and blur-swap keyframes, and an animation
+     beats an inline style, so tilting it directly would do nothing. */
+  const onPointerMove = (e) => {
+    const el = canvasRef.current;
+    if (!el || !allowTilt || e.pointerType === "touch") return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    setTilt({ x: (0.5 - py) * 14, y: (px - 0.5) * 20, on: true });
+  };
+
+  const resetTilt = () => setTilt({ x: 0, y: 0, on: false });
 
   const go = useCallback((next) => {
     const cur = idxRef.current;
@@ -59,25 +81,40 @@ export default function ProductShowcase() {
       }}
       onBlur={() => setPaused(false)}
     >
-      <div className="stage-canvas">
+      <div
+        className="stage-canvas"
+        ref={canvasRef}
+        onPointerMove={onPointerMove}
+        onPointerLeave={resetTilt}
+        onPointerCancel={resetTilt}
+      >
         <span className="stage-shadow" aria-hidden="true" />
 
-        {prev !== null && prev !== index && (
-          <img
-            key={`out-${prev}`}
-            className="stage-pack leaving"
-            src={products[prev].image}
-            alt=""
-            aria-hidden="true"
-          />
-        )}
+        <div
+          className={`stage-tilt${tilt.on ? " lifted" : ""}`}
+          style={{
+            transform:
+              `perspective(900px) rotateX(${tilt.x.toFixed(2)}deg) ` +
+              `rotateY(${tilt.y.toFixed(2)}deg) scale(${tilt.on ? 1.05 : 1})`
+          }}
+        >
+          {prev !== null && prev !== index && (
+            <img
+              key={`out-${prev}`}
+              className="stage-pack leaving"
+              src={products[prev].image}
+              alt=""
+              aria-hidden="true"
+            />
+          )}
 
-        <img
-          key={`in-${index}`}
-          className="stage-pack entering"
-          src={active.image}
-          alt={`${active.name} pack`}
-        />
+          <img
+            key={`in-${index}`}
+            className="stage-pack entering"
+            src={active.image}
+            alt={`${active.name} pack`}
+          />
+        </div>
       </div>
 
       <div className="stage-tabs" role="tablist" aria-label="Choose a rice variety">
